@@ -1,0 +1,54 @@
+syntax = "proto3";
+package ProtoMsg;
+
+message MsgModule_ServerCommon
+{
+	enum MsgCmd
+	{
+		Msg_ServerCommon_None					 = 0;
+        Msg_ServerCommon_Register_Req            = 1;        //socket连接服务器成功
+        Msg_ServerCommon_Register_Rsp            = 2;
+        Msg_ServerCommon_BeatHart_Req            = 3;
+        Msg_ServerCommon_BeatHart_Rsp            = 4;
+        Msg_ServerCommon_Transmit                = 5;        //普通消息发送(在普通消息外加一层)
+	}
+}
+
+message Msg_ServerCommon_Register_Req
+{
+    uint32 uiServerKind = 1;
+    uint32 uiServerId = 2;
+    uint32 uiPlatId = 3;
+    uint32 uiIndex = 4;
+    uint32 uiGroupId = 5;
+	string strExIp = 6;
+}
+
+message Msg_ServerCommon_Register_Rsp
+{
+    uint32 uiServerKind = 1;
+    uint32 uiServerId = 2;
+    bool bFirstCon = 3;
+    string strComment = 4;
+}
+
+message Msg_ServerCommon_BeatHart_Req
+{
+
+}
+
+message Msg_ServerCommon_BeatHart_Rsp
+{
+
+}
+
+message Msg_ServerCommon_Transmit
+{
+    int64 llUid = 1;
+    repeated int64 vecUIds = 2;
+    uint32 uiModuleId = 3;
+    uint32 uiCmd = 4;
+    uint32 uiSequence = 5;
+    uint32 uiRetCode = 6;
+    bytes strCmdMsg = 7;
+}

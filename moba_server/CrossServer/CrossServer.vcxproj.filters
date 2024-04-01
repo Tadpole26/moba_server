@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MainLogic">
+      <UniqueIdentifier>{35d7ca71-66c6-49a9-b6b2-5a21ff61e954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netface">
+      <UniqueIdentifier>{6ad8f842-b39f-4241-81ee-abad029b4d19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{f85a5b02-2338-4a5d-9482-94242979d063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{97098fac-41dd-4483-85c5-8a4a5507945a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{6369402e-5cbc-4022-82b3-4648fcea85c2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CCrossLogic.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameSession.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserCacheInfo.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="CSessionMgr.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CServerNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CDbInstance.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CCrossLogic.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameSession.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CSessionMgr.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CServerNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CDbInstance.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossServer.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

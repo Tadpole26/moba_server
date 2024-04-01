@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>邮件创建</title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"> </script>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+        <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{% static 'js/My97DatePicker/WdatePicker.js' %}"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="col-md-4 col-md-offset-4">
+                <h2 class="text-center">创建新邮件</h2>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <lobel>邮件标题</lobel>
+                        <input type="text" id="title" class="form-control" name="mailtitle">
+                    </div>
+                    <div class="form-group">
+                        <label>发送人</label>
+                        <input type="text" id="sender" class="form-control" name="sendername">
+                    </div>
+                    <div class="form-group">
+                        <label>邮件内容</label>
+                        <input type="text" id="content" class="form-control" name="mailcontent">
+                    </div>
+                    <div class="form-group">
+                        <label>开始时间</label>
+                        <input type="text" name="startDate" id="startDate" value= {{today}} readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>结束时间</label>
+                        <input type="text" name="endDate" id="endDate" value= {{today}} readonly>
+                    </div>
+                    <input type="button" class="btn btn-success btn-block" value="确定" id="createBtn">
+            </div>
+        </div>
+
+        <script>
+            // 2.登录按钮发送ajax请求
+            $('#createBtn').click(function () {
+                // 可以再次使用form标签序列化功能 也可以自己挨个获取
+                $.ajax({
+                    url:'',
+                    type:'post',
+                    data:{
+                        'title':$('#title').val(), 
+                        'send':$('#sender').val(), 
+                        'content':$('#content').val(),
+                        'start':$('#startDate').val(),
+                        'end':$('#endDate').val(),
+                        'csrfmiddlewaretoken':'{{ csrf_token }}'},
+                    success:function (args) {
+                        if(args.code === 10000){
+                            window.location.href = args.url
+                        }else{
+                            // 课下可以使用sweetalert插件美化展示
+                            alert(args.msg)
+                            {#swal(args.msg,'error')#}
+                        }
+                    }
+                })
+            })
+
+            $("#startDate").focus(function () {
+                var endDate = $("#endDate").val();
+                console.log(endDate)
+                if (endDate != "") {
+                    WdatePicker({dateFmt:'yyyy-MM-dd', maxDate:endDate});
+                } else {
+                    WdatePicker({dateFmt:'yyyy-MM-dd'});
+                }
+            });
+
+            $("#endDate").focus(function () {
+                var startDate = $("#startDate").val();
+                if (startDate != "") {
+                    WdatePicker({dateFmt:'yyyy-MM-dd', minDate:startDate});
+                } else {
+                    WdatePicker({dateFmt:'yyyy-MM-dd'});
+                }
+            });
+        </script>
+    </body>
+</html>

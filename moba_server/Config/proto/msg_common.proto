@@ -1,0 +1,128 @@
+syntax = "proto3";
+package ProtoMsg;
+
+//存放与客户端共同使用的数据结构
+
+enum EPlayerStatus
+{
+	ePlayer_Offline = 0;					//离线
+	ePlayer_Online	= 1;					//在线
+	ePlayer_InBattle = 2;					//战斗中
+}
+
+
+//用户道具
+message game_item_t
+{
+	uint32	uiId = 1;			//道具id(道具唯一值)
+	uint32	uiNum = 2;			//道具数量
+	int64	llTime = 3;			//道具获取时间戳
+}
+
+//战斗房间类型
+enum ERoomType
+{
+	ERoomType_None = 0;
+	ERoomType_PVP_Leisure = 1;		//休闲模式
+	ERoomType_PVP_1V1 = 2;			//1v1
+	ERoomType_PVP_2V2 = 3;			//2v2
+}
+
+//休闲模式类型
+enum ELeisureType
+{
+	ELeisureType_None = 0;
+	ELeisureType_Melee = 1;
+	ELeisureType_Stronghold = 2;
+	ELeisureType_RandBoss = 3;
+	ELeisureType_RandGundam = 4;
+	ELeisureType_BanGundam = 5;
+	ELeisureType_UnlimitedFire = 6;
+	ELeisureType_SingleBattle = 7;
+}
+
+//玩家在房间状态
+enum ERoomStatus
+{
+	ERoomStatus_None = 0;
+	ERoomStatus_Start = 1;
+	ERoomStatus_Run = 2;
+	ERoomStatus_End = 3;
+}
+
+enum ERobotType
+{
+	ERobotType_None = 0;
+	ERobotType_Level1 = 1;
+	ERobotType_Level2 = 2;
+	ERobotType_Level3 = 3;
+	ERobotType_Level4 = 4;
+	ERobotType_Level5 = 5;
+	ERobotType_Level6 = 6;
+	ERobotType_Level7 = 100;		//联系AI
+}
+
+enum EBattleResult
+{
+	EBattleResult_None = 0;
+	EBattleResult_Win = 1;			//胜利
+	EBattleResult_Lose = 2;			//失败
+	EBattleResult_DagFall = 3;		//平局
+}
+
+//战斗结果,对玩家上报的结果验证
+enum EBRCode
+{
+	EBRCode_Success = 0;						//正常
+	EBRCode_Diff = 1;						//上报的战绩不一样(错误)
+	EEBRCode_WinSame = 2;						//都胜利(错误)
+	EBRCode_PvgDiff = 3;						//平局不同(错误)
+	EBRCode_Empty = 4;						//无战报上报(错误)
+	EBRCode_Timeout = 5;						//超时被结算(错误)
+	EBRCode_NoStart = 6;						//没有开始(错误)
+	EBRCode_Oper = 7;							//动作操作不同步(错误)
+	EBRCode_ResTimeout = 8;					//第一个上报之后,其他人上报结果超时(错误)
+	EBRCode_OfflineDiff = 9;				//断线后,上报的战绩不一样(错误)
+	EBRCode_OfflineTimeout = 10;			//断线后,第一个上报之后,奇台人上报结果超时(错误)
+	EBRCode_OneunSync = 11;				//4人有一个人不同步(错误)
+}
+
+//英雄基础信息
+message hero_common_info_t
+{
+	int32 iHeroId = 1;
+	int32 iLevel = 2;
+	int32 iStar = 3; 
+}
+
+//玩家基础数据
+message user_common_info_t
+{
+	int64 llUid = 1;
+	int32 iPos = 2;									//在几楼
+	string strName = 3;
+	int32 iLevel = 4;
+	repeated hero_common_info_t vecHeros = 5;
+	ERobotType eRobotType = 6;	
+	int32 iSide = 7;								//属于哪方阵营
+}
+
+///////////////////////////////////////////////////////////////////
+//玩家带入战斗数据
+message user_battle_info_t
+{
+	string strUserSessionId = 1;
+	user_common_info_t oUserInfo = 2;
+	int32 iMatchSec = 3;							//匹配的时间
+	bool  bOb = 4;									//是否观战者
+	int32 iConvId = 5;								//udp/kcp连接id
+}
+
+//玩家上传战报数据
+message user_battle_result_t
+{
+	int64 llUid = 1;
+	int32 iPosition = 2;							//匹配位置
+	EBattleResult eResult = 3;						//个人战斗结果
+	int64 llEndTime = 4;
+}

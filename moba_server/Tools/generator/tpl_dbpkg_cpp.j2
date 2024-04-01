@@ -1,0 +1,257 @@
+{%- set keyField = namespace(type='', mem_name='', pb_name='', cache_name='') -%}
+{%- for field in field_list %}
+{%- if field.m_strFKey == True %}
+{%-set keyField.type = field.m_strType -%}
+{%-set keyField.mem_name = field.m_strMemName -%}
+{%-set keyField.pb_name = field.m_strPbName -%}
+{%-set keyField.cache_name = field.m_strCacheName -%}
+{%-endif %}
+{%- endfor %}
+
+{%- macro gen_db_func(type) -%}
+{%- if type == 'uint32' -%}
+NumUInt
+{%-elif type == 'int' -%}
+NumInt
+{%-elif type == 'int64' -%}
+NumLong
+{%-elif type == 'time_t' -%}
+Time
+{%-elif type == 'string' -%}
+Str
+{%-elif type == 'bool' -%}
+Bool
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro gen_add_func(type) -%}
+{%-if type == 'time_t' -%}
+AddReqTime
+{%-elif type == 'string' -%}
+AddReqStr
+{%-else-%}
+AddReq
+{%- endif -%}
+{%- endmacro -%}
+
+#include "{{dbpkg_file}}.h"
+#include "CDBUserMgr.h"
+#include "CDBUser.h"
+
+const char* {{db_name}}::tb_name = "{{db_name}}";
+
+{%- for field in field_list %}
+{%- if field.m_strKey == True %}
+const char* {{db_name}}::id = "id";
+{%- else %}
+const char* {{db_name}}::{{field.m_strName}} = "{{field.m_strName}}";
+{%- endif %}
+{%- endfor %}
+
+{% if col_type == 'list' %}
+bool {{dbpkg_name}}::ReadDB{{col_name}}(sDBSecRet& vecMap, CDBUser* pUser)
+{
+    for (sDBMap& oValue : vecMap)
+    {
+        {{keyField.type}} uiId = oValue.{{gen_db_func(keyField.type)}}({{db_name}}::id);
+        {{st_name}}& stData = pUser->m_o{{col_name}}Opt.m_map{{col_name}}[uiId];
+        {%- for field in field_list %}
+        {%- if field.m_strkey == True %}
+        stData.{{field.m_strMemName}} = uiId;
+        {%- else %}
+        stData.{{field.m_m_strMemName}} = oValue.{{gen_db_func(field.m_strType)}}({{db_name}}::{{field.m_strName}});
+        {%- endif %}
+        {%- endfor %}
+    }
+    return true;
+}
+{%- else %}
+bool {{dbpkg_name}}::ReadDB{{col_name}}(sDBSecRet& vecMap, CDBUser* pUser)
+{
+    if (vecMap.empty()) return true;
+    sDBMap& retMap = vecMap[0];
+
+    {{st_name}}& stInfo = pUser->m_o{{col_name}}Opt.Get{{col_name}}Info();
+
+    {%- for field in field_list %}
+    stInfo.{{field.m_strMemName}} = retMap.{{gen_db_func(field.m_strType)}}({{db_name}}::{{field.m_strName}});
+    {%- endfor %}
+    return true;
+}
+{%- endif %}
+
+void {{dbpkg_name}}::OnUpdate{{col_name}}(unsigned char* pMsg, size uiLen)
+{
+    assert(pMsg);
+    Msg_DBGS_Update{{col_name}} oUpdate;
+    PARSE_PTL(oUpdate, pMsg, uiLen);
+
+    CDBUser* pUser = gDBUserManager->GetUserIn(oUpdate.lluserid());
+    if (nullptr == pUser)
+    {
+        Log_Error("uer not exist!, uid:%lld", oUpdate.lluserid());
+        return;
+    }
+
+    if (!pUser->m_o{{col_name}}Opt.Update{{col_name}}(oUpdate))
+        Log_Error("uid:%lld update {{col_name}} failed!", oUpdate.lluserid());
+}
+
+{%- if col_type == 'list' %}
+bool {{dbpkg_name}}::Update{{col_name}}(Msg_DBGS_Update{{col_name}}& oUpdate)
+{
+    auto& oMsg = oUpdate.oinfo();
+
+    if (oUpdate.eopt() == EDBOptType_Add)
+    {
+        {{st_name}}& oData = m_map{{col_name}}[oMsg.{{keyField.pb_name}}];
+        {%- for field in field_list %}
+        oData.{{field.m_strMemName}} = oMsg.{{field.m_strPbName}}();
+        {%- endfor %}
+        AddDB{{col_name}}(oUpdate);
+    }
+    else if (oUpdate.eopt() == EDBOptType_Update)
+    {
+        {{st_name}}& oData = m_map{{col_name}}[oMsg.{{keyField.pb_name}}];
+        {%- for field in field_list %}
+        oData.{{field.m_strMemName}} = oMsg.{{field.m_strPbName}}();
+        {%- endfor %}
+        UpdateDB{{col_name}}(oUpdate);
+    }
+    else if (oUpdate.eopt() == EDBOptType_DeleteOne)
+    {
+        {{st_name}}& oData = m_map{{col_name}}[oMsg.{{keyField.pb_name}}];
+        {%- for field in field_list %}
+        oData.{{field.m_strMemName}} = oMsg.{{field.m_strPbName}}();
+        {%- endfor %}
+        DeleteOneDB{{col_name}}(oUpdate);
+    }
+    else if (oUpdate.eopt() == EDBOptType_DeleteAll)
+    {
+        m_map{{col_name}}.clear();
+        DeleteAllDB{{col_name}}(oUpdate);
+    }
+    return true;
+}
+{%- else %}
+bool {{dbpkg_name}}::Update{{col_name}}(Msg_DBGS_Update{{col_name}}& oUpdate)
+{
+    auto& oMsg = oUpdate.oinfo();
+    {%- for field in field_list %}
+    m_o{{col_name}}.{{field.m_strMemName}} = oMsg.{{field.m_strPbName}}();
+    {%- endfor %}
+
+    AddOrUpdateDB{{col_name}}(oUpdate);
+    return true;
+}
+{%- endif %}
+
+{%- if col_type == 'list' %}
+bool {{dbpkg_name}}::AddDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+{
+    if (oUpdate.has_oinfo())
+    {
+        auto& oMsg = oUpdate.oinfo();
+        sDBRequest stRequest(eDBQueryType::eDB_Insert, db_game.u_player.tb_name, {{db_name}}::tb_name);
+        stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
+        {%- if keyField.type == 'string' %}
+        stRequest.AddConStr({{db_name}}::id, oMsg.{{keyField.pb_name}}());
+        {%- else %}
+        stRequest.AddCon({{db_name}}::id, oMsg.{{keyField.pb_name}}());
+        {% endif %}
+        {%- for field in field_list %}
+        {%- if field.m_strKey == True %}
+        stRequest.{{gen_add_func(field.m-m_strType)}}({{db_name}}::id, oMsg.{{field.m_strPbName}}());
+        {%- else %}
+        stRequest.{{gen_add_func(field.m-m_strType)}}({{db_name}}::{{field.m_strName}}, oMsg.{{field.m_strPbName}}());
+        {%- endif %}
+        {%- endfor %}
+        gDBInstace->PushGame(stRequest);
+    }
+    return true;
+}
+
+bool {{dbpkg_name}}::UpdateDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+{
+    if (oUpdate.has_oinfo())
+    {
+        auto& oMsg = oUpdate.oinfo();
+        sDBRequest stRequest(eDBQueryType::eDB_Update, db_game.u_player.tb_name, {{db_name}}::tb_name);
+        stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
+        {%- if keyField.type == 'string' %}
+        stRequest.AddConStr({{db_name}}::id, oMsg.{{keyField.pb_name}}());
+        {%- else %}
+        stRequest.AddCon({{db_name}}::id, oMsg.{{keyField.pb_name}}());
+        {% endif %}
+        {%- for field in field_list %}
+        {%- if field.m_strKey == True %}
+        stRequest.{{gen_add_func(field.m-m_strType)}}({{db_name}}::id, oMsg.{{field.m_strPbName}}());
+        {%- else %}
+        stRequest.{{gen_add_func(field.m-m_strType)}}({{db_name}}::{{field.m_strName}}, oMsg.{{field.m_strPbName}}());
+        {%- endif %}
+        {%- endfor %}
+        gDBInstace->PushGame(stRequest);
+    }
+    return true;
+}
+
+bool {{dbpkg_name}}::DeleteOneDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+{
+    auto& oMsg = oUpdate.oinfo();
+    sDBRequest stRequest(eDBQueryType::eDB_Delete, db_game.u_player.tb_name, {{db_name}}::tb_name);
+    stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
+    {%- if keyField.type == 'string' %}
+    stRequest.AddConStr({{db_name}}::id, oMsg.{{keyField.pb_name}}());
+    {%- else %}
+    stRequest.AddCon({{db_name}}::id, oMsg.{{keyField.pb_name}}());
+    {% endif %}
+    gDBInstace->PushGame(stRequest);
+    return true;
+}
+
+bool {{dbpkg_name}}::DeleteAllDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+{
+    sDBRequest stRequest(eDBQueryType::eDB_DropParam, db_game.u_player.tb_name);
+    stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
+    stRequest.AddField({{db_name}}::tb_name);
+    gDBInstace->PushGame(stRequest);
+    return true;
+}
+{%- else %}
+bool {{dbpkg_name}}::AddOrUpdateDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+{
+    auto& oInfo = oUpdate.oinfo();
+    sDBRequest stRequest(eDB_InsertUpdate, db_game.u_player.tb_name, {{db_name}}::tb_name, tagSecTblDesc::eST_Object);
+
+    stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
+    {%- for field in field_list %}
+    stRequest.{{gen_add_func(field.m_strType)}}({{db_name}}::{{field.m_strName}}, oInfo.{{field.m_strPbName}}());
+    {%- endfor %}
+    gDBInstace->PushGame(stRequest);
+    return true;
+}
+{%- endif %}
+
+{%- if col_type == 'list' %}
+void {{dbpkg_name}}::Get{{col_name}}(DBGS_UserData& oData)
+{
+    for (auto& value : m_map{{col_name}})
+    {
+        {{st_name}}& stData = value.second;
+        ProtoMsg::DBGS_{{col_name}}* pMsg = oData.add_vec{{col_lower_name }}();
+        if (nullptr == pMsg) continue;
+        {%- for field in field_list %}
+        pMsg->set_{{field.m_strPbName}}(stData.{{field.m_strMemName}});
+        {%- endfor %}
+    }
+}
+{%- else %}
+void {{dbpkg_name}}::Get{{col_name}}(DBGS_UserData& oData)
+{
+    ProtoMsg::DBGS_{{col_name}}* pMsg = oData.mutable_o{{col_lower_name}}info();
+    if (pMsg == nullptr) return;
+    {%- for field in field_list %}
+    pMsg->set_{{field.m_strPbName}}(m_o{{col_name}}.{{field.m_strMemName}});
+    {%- endfor %}
+}
+{%- endif %}

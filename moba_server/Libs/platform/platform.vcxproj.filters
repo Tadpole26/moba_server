@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="impl">
+      <UniqueIdentifier>{03998329-922b-4796-af60-728dc1b0827b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{e48e1498-67e4-4931-8972-16be0031c11f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kcp">
+      <UniqueIdentifier>{ea188f1a-06af-492e-8628-67b9ba9428e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="server">
+      <UniqueIdentifier>{8708b7ed-c213-4608-9945-3d4d4fa304ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{4b8e8b94-1d0c-40f0-902c-5d2a47a285ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="http">
+      <UniqueIdentifier>{fbc85f29-e9ad-4df4-873a-60f8d4eaa50f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{2c2637bc-70a2-4835-9c47-4885c8fef99e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lru_hashmap.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="util_random.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="skiplist.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="db_thread.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="util_spthread.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util_time.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="rank_map.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="record_associate_container.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="util_strop.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util_file.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util_arg_opt.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util_malloc.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="ikcp.h">
+      <Filter>kcp</Filter>
+    </ClInclude>
+    <ClInclude Include="util_string.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="objects_pool.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="mongo_base.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db_struct.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="mongo_db.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="mongo_mgr.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db_mgr.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="http_param.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="http_client.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="http_mgr.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="http_request.h">
+      <Filter>http</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql_db.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql_mgr.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="server_pool.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="util_load_base.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="call_stack.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="coredump_x.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="coutclr.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="dtype.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="en_de_code.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="func_proc.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="global_define.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="log_mgr.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="win_get_opt.h">
+      <Filter>server</Filter>
+    </ClInclude>
+    <ClInclude Include="map_pool.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\id_alloctor.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="map_pools.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="util_random.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util_time.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util_strop.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util_file.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util_arg_opt.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="ikcp.cpp">
+      <Filter>kcp</Filter>
+    </ClCompile>
+    <ClCompile Include="util_string.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="mongo_base.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db_struct.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="mongo_db.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="mongo_mgr.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db_mgr.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="http_param.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="http_client.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="http_mgr.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="http_request.cpp">
+      <Filter>http</Filter>
+    </ClCompile>
+    <ClCompile Include="mysql_db.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="mysql_mgr.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="util_load_base.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="call_stack.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="coredump_x.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="coutclr.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="en_de_code.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="func_proc.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="log_mgr.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="win_get_opt.cpp">
+      <Filter>server</Filter>
+    </ClCompile>
+    <ClCompile Include="CBattleCommon.h">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

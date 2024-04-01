@@ -1,0 +1,207 @@
+[DEBUG]  [2023-03-13 17:18:07,330] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:18:07,444] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:18:07,446] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:18:07,448] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[ERROR]  [2023-03-13 17:18:18,576] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 62, in _process
+    accName = sdk.Verify(params['sid'], params['token'], params['sub_channel'])
+              ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'Verify'
+[ERROR]  [2023-03-13 17:18:18,595] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 22.94ms ]
+[DEBUG]  [2023-03-13 17:33:03,017] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:33:03,111] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:33:03,112] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:33:03,112] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[INFO]  [2023-03-13 17:33:05,763] [web.py:2271] ------->>>>[200 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 5.98ms ]
+[INFO]  [2023-03-13 17:33:34,419] [web.py:2271] ------->>>>[304 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 13967.24ms ]
+[DEBUG]  [2023-03-13 17:33:57,959] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:33:58,077] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:33:58,078] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:33:58,079] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[ERROR]  [2023-03-13 17:34:01,367] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    account.SdkCheck(accName, params['channel'], params['dev'], params['os'], params['model'], params['idfa_imei'])
+TypeError: CAccount.SdkCheck() missing 1 required positional argument: 'client_ver'
+[ERROR]  [2023-03-13 17:34:01,382] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 17.77ms ]
+[DEBUG]  [2023-03-13 17:36:00,100] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:36:00,210] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:36:00,210] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:36:00,211] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 17:36:05,305] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[ERROR]  [2023-03-13 17:36:05,310] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    account.SdkCheck(accName, params['channel'], params['dev'], params['os'], params['model'], params['idfa_imei'])
+  File "D:\Dream\GameApi\CAccount.py", line 42, in SdkCheck
+    if len(loginRows) == 0:
+       ^^^^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+[ERROR]  [2023-03-13 17:36:05,336] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 126.90ms ]
+[DEBUG]  [2023-03-13 17:37:14,611] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:37:14,720] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:37:14,720] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:37:14,721] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 17:40:00,439] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[ERROR]  [2023-03-13 17:40:00,451] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    account.SdkCheck(accName, params['channel'], params['dev'], params['os'], params['model'], params['idfa_imei'])
+  File "D:\Dream\GameApi\CAccount.py", line 42, in SdkCheck
+    if len(loginRows) == 0:
+       ^^^^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+[ERROR]  [2023-03-13 17:40:00,473] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 163244.11ms ]
+[DEBUG]  [2023-03-13 17:44:59,796] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:44:59,919] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:44:59,920] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:44:59,920] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 17:45:08,449] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[INFO]  [2023-03-13 17:45:08,457] [web.py:2271] ------->>>>[200 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 5870.81ms ]
+[DEBUG]  [2023-03-13 18:05:14,246] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 18:05:14,379] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 18:05:14,380] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 18:05:14,381] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 18:05:17,588] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[DEBUG]  [2023-03-13 18:05:17,591] [CMysqlClient.py:20] ------->>>>[replace into account_id (stub) values ('a'); ]
+[DEBUG]  [2023-03-13 18:05:17,609] [CMysqlClient.py:35] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(846,"iosapple111","123456"); ]
+[DEBUG]  [2023-03-13 18:05:17,610] [CMysqlClient.py:35] ------->>>>[insert into account_info_1(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(846,0,"bbb","127:0:0:1","apple","apple"); ]
+[INFO]  [2023-03-13 18:05:17,664] [web.py:2271] ------->>>>[304 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 192.06ms ]
+[DEBUG]  [2023-03-13 18:18:08,406] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 18:18:08,490] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 18:18:08,490] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 18:18:08,491] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 18:18:10,172] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[ERROR]  [2023-03-13 18:18:10,177] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    msg, code, acc_id, acc_pwd = account.SdkCheck(
+                                 ^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CAccount.py", line 51, in SdkCheck
+    self.m_accountId = loginRows['acc_id']
+                       ~~~~~~~~~^^^^^^^^^^
+TypeError: tuple indices must be integers or slices, not str
+[ERROR]  [2023-03-13 18:18:10,196] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 144.92ms ]

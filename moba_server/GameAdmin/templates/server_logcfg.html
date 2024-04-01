@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "main-content col-md-10">
+    <br>
+    <span>账号名:</span>
+    <input type="text" name="name" id="name">
+    <span>开始时间:</span>
+    <input type="text" name="startDate" id="startDate" value= {{today}} readonly>
+    <span>结束时间:</span>
+    <input type="text" name="endDate" id="endDate"  value= {{today}} readonly>
+    <button type="button" class="col-md-offset-10 btn btn-primary" style="margin-top: -4%; width: 10%;" id="findBtn">
+        查询
+    </button>
+    <br>
+    <table class="table">
+        <thread>
+            <tr>
+                <th>账号名</th>
+                <th>时间</th>
+                <th>配置名</th>
+                <th>操作类型</th>
+            </tr>
+        </thread>
+        <tbody>
+            {% for log in page_queryset %}
+            <tr>
+                <td>{{ log.opt_acc_name }}</td>
+                <td>{{ log.opt_time }}</td>
+                <td>{{ log.opt_name }}</td>
+                <td>{{ log.opt_type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-left">{{ page_obj|safe }}</div>
+</div>
+
+<script>
+    $("#findBtn").click(function () {
+        var accname = $("#name").val();
+        var startdate = $("#startDate").val();
+        var enddate = $("#endDate").val();
+        var path = '/server_logcfg?accname=' + accname + '&startdate=' + startdate + '&enddate=' + enddate;
+		window.location.href = path;
+    });
+</script>
+{% endblock %}
+

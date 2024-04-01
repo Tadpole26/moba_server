@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<const_info>
+		<id>mail_count_max</id>
+		<value>100.0</value>
+		<date></date>
+		<des>背包邮件最大数</des>
+	</const_info>
+</xml>

@@ -1,0 +1,187 @@
+#include "{{pkg_file}}.h"
+#include "msg_module_serverdb.pb.h"
+#include "CUser.h"
+#include "CGameLogic.h"
+using namespace ProtoMsg;
+
+{%- set keyField = namespace(type='', mem_name='', pb_name='', cache_name='') -%}
+{%- for field in field_list %}
+{%- if field.m_strFKey == True %}
+{%-set keyField.type = field.m_strType -%}
+{%-set keyField.mem_name = field.m_strMemName -%}
+{%-set keyField.pb_name = field.m_strPbName -%}
+{%-set keyField.cache_name = field.m_strCacheName -%}
+{%-endif %}
+{%- endfor %}
+
+{{pkg_name}}:: {{pkg_name}}()
+{
+}
+
+{{pkg_name}}::~{{pkg_name}}()
+{
+    m_pOwnerUser = nullptr;
+}
+
+{%if col_type == 'list' -%}
+void {{pkg_name}}::Parse{{col_name}}FromDB(CUser* pUserInfo, const ProtoMsg::user_pb_data_t &oUserData)
+{
+    m_pOwnerUser = pUserInfo;
+
+    m_map{{col_name}}.clear();
+    for (auto& value : oUserData.vec{{col_lower_name}}())
+    {
+        {{st_name}}& oData = m_map{{col_name}}[value.{{keyField.pb_name}}()];
+        {%- for field in field_list %}
+        oData.{{field.m_strMemName}} = value.{{field.m_strPbName}}();
+        {%- endfor %}
+    }
+}
+
+{{st_name}}* {{pkg_name}}::Get{{col_name}}({{keyField.type}} {{keyField.cache_name}})
+{
+    auto iter = m_map{{col_name}}.find({{keyField.cache_name}});
+    if (iter == m_map{{col_name}})
+        return nullptr;
+    return &(iter->second);
+}
+
+{{st_name}}* {{pkg_name}}::Add{{col_name}}({{keyField.type}} {{keyField.cache_name}})
+{
+    if (Get{{col_name}}({{keyField.cache_name}}) != nullptr)
+        return nullptr;
+
+    {{st_name}}& oData = m_map{{col_name}}[{{keyField.cache_name}}];
+    {%- for field in field_list %}
+    {%- if field.m_strKey == True %}
+    oData.{{field.m_strMemName}} = {{keyField.cache_name}};
+    {%- else %}
+    oData.{{field.m_strMemName}} = {{field.m_stDft}};
+    {%- endif %}
+    {%- endfor %}
+    return &(oData);
+}
+
+bool {{pkg_name}}::Add{{col_name}}ToDB({{keyField.type}} {{keyField.cache_name}})
+{
+    if (nullptr == m_pOwnerUser)
+        return false;
+
+    {{ st_name }}* pFind = Get{{col_name}}({{keyField.cache_name}});
+    if (!pFind) return false;
+
+    Msg_ServerDB_GD_Update{{col_name}} oUpdate;
+    oUpdate.set_llUid(m_pOwnerUser->GetUserId());
+    oUpdate.set_eopt(EDBOptType_Add);
+    DBGS_{{col_name}}* pMsg = oUpdate.mutable_oinfo();
+    if (pMsg == nullptr)
+        return false;
+    {%- for field in field_list %}
+    pMsg->set_{{field.m_strPbName}}(pFind->{{field.m_strMemName}});
+    {%- endfor %}
+    return gDBMgr->SendToDBServer(&oUpdate, MsgModule_ServerDB::Msg_ServerDB_GD_Update{{col_name}});
+}
+
+bool {{pkg_name}}::Delete{{col_name}}({{keyField.type}} {{keyField.cache_name}})
+{
+    if (nullptr == m_pOwnerUser)
+        return false;
+
+    {{st_name}}* pFind = Get{{col_name}}({{keyField.cache_name}});
+    if (!pFind) return false;
+
+    m_map{{col_name}}.erase({{keyField.cache_name}});
+    return true;
+}
+
+bool {{pkg_name}}::Delete{{col_name}}ToDB({{keyField.type}} {{keyField.cache_name}})
+{
+    if (nullptr == m_pOwnerUser)
+        return false;
+    
+    {{st_name}}* pFind = Get{{col_name}}({{keyField.cache_name}});
+    if (!pFind) return false;
+
+    Msg_ServerDB_GD_Update{{col_name}} oUpdate;
+    oUpdate.set_llUid(m_pOwnerUser->GetUserId());
+    oUpdate.set_eopt(EDBOptType_DeleteOne);
+    DBGS_{{col_name}}* pMsg = oUpdate.mutable_oinfo();
+    if (pMsg == nullptr)
+        return false;
+    {%- for field in field_list %}
+    pMsg->set_{{keyField.pb_name}}(pFind->{{keyField.mem_name}});
+    {%- endfor %}
+    return gDBMgr->SendToDBServer(&oUpdate, MsgModule_ServerDB::Msg_ServerDB_GD_Update{{col_name}});
+}
+
+bool {{pkg_name}}::Delete{{col_name}}()
+{
+    m_map{{col_name}}.clear();
+    return true;
+}
+
+bool {{pkg_name}}::Delete{{col_name}}ToDB()
+{
+    if (nullptr == m_pOwnerUser)
+        return false;
+
+    Msg_ServerDB_GD_Update{{col_name}} oUpdate;
+    oUpdate.set_llUid(m_pOwnerUser->GetUserId());
+    oUpdate.set_eopt(EDBOptType_DeleteAll);
+    return gDBMgr->SendToDBServer(&oUpdate, MsgModule_ServerDB::Msg_ServerDB_GD_Update{{col_name}});
+}
+
+bool {{pkg_name}}::Update{{col_name}}ToDB({{keyField.type}} {{keyField.cache_name}})
+{
+    if (nullptr == m_pOwnerUser)
+        return false;
+    
+    {{st_name}}* pFind = Get{{col_name}}({{keyField.cache_name}});
+    if (!pFind) return false;
+
+    Msg_ServerDB_GD_Update{{col_name}} oUpdate;
+    oUpdate.set_llUid(m_pOwnerUser->GetUserId());
+    oUpdate.set_eopt(EDBOptType_Update);
+    DBGS_{{col_name}}* pMsg = oUpdate.mutable_oinfo();
+    if (pMsg == nullptr)
+        return false;
+    {%- for field in field_list %}
+    pMsg->set_{{field.m_strPbName}}(pFind->{{field.m_strMemName}});
+    {%- endfor %}
+    return gDBMgr->SendToDBServer(&oUpdate, MsgModule_ServerDB::Msg_ServerDB_GD_Update{{col_name}});
+}
+
+void {{pkg_name}}::Clear()
+{
+    m_map{{col_name}}.clear();
+}
+{%- else %}
+void {{pkg_name}}::Parse{{col_name}}FromDB(CUser* pUserInfo, const ProtoMsg::user_pb_data_t &oUserData)
+{
+    m_pOwnerUser = pUserInfo;
+
+    const ServerDB_{{col_name}}& oData = oUserData.o{{col_lower_name}}();
+    {%- for field in field_list %}
+    Set{{field.m_strBaseName}}(oData.{{field.m_strPbName}}());
+    {%- endfor%}
+    return;
+}
+
+bool {{pkg_name}}::Update{{col_name}}ToDB()
+{
+    if (nullptr == m_pOwnerUser)
+        return false;
+    
+    Msg_ServerDB_GD_Update{{col_name}} oUpdate;
+    oUpdate.set_lluserid(m_pOwnerUser->GetUserId());
+    ServerDB_{{col_name}}* pMsg = oUpdate.mutable_oinfo();
+    if (pMsg == nullptr)
+        return false;
+    {%- for field in field_list %}
+    pMsg->set_{{field.m_strPbName}}(Get{{field.m_strBaseName}}());
+    {%- endfor %}
+    if (gGameLogic->m_pDBNetFace)
+        return gGameLogic->m_pDBNetFace->Send_Msg(&oUpdate, MsgModule_ServerDB::Msg_ServerDB_GD_Update{{col_name}}, ServerDB);
+    return false;
+}
+{% endif %}

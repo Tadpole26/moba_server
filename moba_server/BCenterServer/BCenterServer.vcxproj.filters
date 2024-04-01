@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Room">
+      <UniqueIdentifier>{6dc4c7f8-7b0c-41a4-a7da-4c386cb807b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netface">
+      <UniqueIdentifier>{41f4a71c-d13a-486f-9946-25bd04fcef0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainLogic">
+      <UniqueIdentifier>{0e5f7db8-5170-4755-aca1-380d9f641073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{62aac06e-5131-4850-a078-563e867f9fcc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CRoom.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoomManager.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include="CBattleSession.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CBattleManager.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CCrossSession.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CServerNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CBCenterLogic.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CHttpFunc.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CRoom.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoomManager.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include="CBattleSession.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CBattleManager.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CCrossSession.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CServerNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="BCenterServer.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CBCenterLogic.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CHttpFunc.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

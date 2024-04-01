@@ -1,0 +1,24 @@
+syntax = "proto3";
+package ProtoMsg;
+
+enum ResultCode
+{
+	Code_Common_Success					= 0; 		//成功
+	Code_Common_Failure					= 1;		//失败
+	
+	Code_Login_RoleNameCollision		= 1001;		//创建角色重名
+	Code_Login_NoUser					= 1002;		//没有角色数据
+	Code_Login_RoleInGame				= 1003;		//角色已经再游戏中
+	Code_Login_CheckOften				= 1004;		//查看玩家数据太频繁
+	Code_Login_NoInGame					= 1005;		//玩家当前不在线
+	Code_Login_NameTooLong				= 1006;		//名字过长
+	Code_Login_NameNotRight				= 1007;		//名字中有非法字符
+	Code_Login_DeviceNotSame			= 1008;		//重新登陆设备不一致失败
+	Code_Login_ReloginTimeout			= 1009;		//重新登录超时
+	Code_Login_Failure					= 1010;		//登录失败
+
+	Code_Match_RoomRelease				= 2001;		//获取房间信息时,房间已解散
+	Code_Match_NotEnterRoom				= 2002;		//未进入房间
+	Code_Match_FullRoom					= 2003;
+}
+

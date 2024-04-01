@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<col_info col_name="BaseInfo" col_type="object">
+    <field_info name="user_id" type="int64_t" default="0" comment="玩家唯一id" />
+    <field_info name="account" type="string" default="&quot;&quot;" comment="用户所属账号" />
+    <field_info name="user_nick" type="string" default="&quot;&quot;" comment="用户昵称" />
+    <field_info name="gender" type="int" default="0" comment="用户性别" />
+    <field_info name="user_level" type="int" default="0" comment="用户等级" />
+    <field_info name="user_exp" type="int" default="0" comment="用户经验" />
+    <field_info name="create_time" type="time_t" default="0" comment="创角时间" />
+    <field_info name="login_time" type="time_t" default="0" comment="最近一次登录时间" />
+    <field_info name="logout_time" type="time_t" default="0" comment="最近一次登出时间" />
+</col_info>

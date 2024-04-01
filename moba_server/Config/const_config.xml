@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+<!-- 通用配置 -->
+	<common_config>
+		<group>1</group>
+		<platid>1</platid>
+	</common_config>
+<!-- 网关配置 -->
+    <gate_config> 
+		<ip>127.0.0.1</ip>
+		<port>18201</port>
+		<limit>3800</limit>
+		<check_max>5</check_max>
+		<timeout>300</timeout>
+		<wait_check>1800</wait_check>
+		<notify_interval>10</notify_interval>
+	</gate_config>
+<!-- 游戏服配置 -->
+	<game_config>
+		<ip>127.0.0.1</ip>
+		<port>18301</port>
+		<zk_host>vcs.wozip.com:2181</zk_host>
+		<server_node>/game_config_1</server_node>
+		<normal_node>/normal_config</normal_node>
+	</game_config>
+<!-- 系统服配置 -->
+	<sys_config>
+		<ip>127.0.0.1</ip>
+		<port>19041</port>
+	</sys_config>
+<!-- 跨服配置 -->
+	<cross_config>
+		<ip>127.0.0.1</ip>
+		<port>19011</port>
+	</cross_config>
+<!-- 战斗服配置 -->
+	<battle_config>
+		<max_user>100</max_user>
+		<udp>0</udp>
+		<timeout>120</timeout>
+		<max_thread>10</max_thread>
+		<ip>127.0.0.1</ip>
+		<port>19011</port>
+		<id>1</id>
+	</battle_config>
+	<!-- 数据服配置 -->
+	<db_config>
+		<ip>127.0.0.1</ip>
+		<port>18101</port>
+	</db_config>
+<!-- GameApi -->
+	<game_api>
+		<address>http://192.168.88.242/ws_gmws/</address>
+	</game_api>
+<!-- mongodb -->
+	<mongo_config>
+		<host>vcs.wozip.com:27017</host>
+		<user>admin</user>
+		<password>123456</password>
+		<game_db>u_group</game_db>
+		<mail_db>db_global_mail</mail_db>
+		<auth>MONGODB-CR</auth>
+	</mongo_config>
+<!-- mysqldb -->
+	<mysql_config>
+		<host>192.168.88.242:27017</host>
+		<user>dba</user>
+		<password>123456</password>
+		<game_name>db_dream_role</game_name>
+		<port>3306</port>
+	</mysql_config>
+</root>

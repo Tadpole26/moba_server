@@ -1,0 +1,237 @@
+syntax = "proto3";
+import "msg_common.proto";
+import "result_code.proto";
+import "server_common.proto";
+package ProtoMsg;
+
+message MsgModule_ServerInner
+{
+	enum MsgCmd
+	{
+		Msg_ServerInner_None					 = 0;
+        Msg_ServerInner_GG_Login_Req             = 1;    //登录(gate->game)
+        Msg_ServerInner_GG_Login_Rsp             = 2;
+        Msg_ServerInner_GG_Create_Req            = 3;    //创角(gate->game)
+        Msg_ServerInner_GG_Create_Rsp            = 4;
+		Msg_ServerInner_GG_Save_Ntf				 = 5;
+        Msg_ServerInner_GG_Kick_Notify           = 6;    //踢人(gate->game)
+        Msg_ServerInner_GG_Msg_Notify            = 7; 
+
+		Msg_ServerInner_GS_RecordOnline			= 10;	//在线记录(gate->sys)
+		Msg_ServerInner_GS_ClearOnline			= 11;	//清除记录(gate->sys)
+		Msg_ServerInner_GS_NotifyOnline			= 12;
+		Msg_ServerInner_GS_NotifyLogout			= 13;
+		Msg_ServerInner_GS_PlayerLoginReq		= 14;
+		Msg_ServerInner_GS_PlayerLoginRsp		= 15;	
+		Msg_ServerInner_GS_UniqueIdReq			= 16;
+		Msg_ServerInner_GS_UniqueIdRsp			= 17;
+		Msg_ServerInner_GS_KickPlayerNotify		= 18;
+		Msg_ServerInner_GS_TransmitNotify		= 19;
+		Msg_ServerInner_GS_WMsg					= 20;
+		Msg_ServerInner_GS_ModifyNameReq		= 21;
+		Msg_ServerInner_GS_ModifyNameRsp		= 22;
+		Msg_ServerInner_GS_UpdatePlayer			= 23;
+		Msg_ServerInner_GS_UpdateRmb			= 24;
+
+	}
+}
+
+message Msg_ServerInner_GG_Login_Req
+{
+    int64 llUserId = 1;
+    string strAccName = 2;
+    string strSession = 3;
+    uint32 uiSdk = 4;
+    string strClientIp = 5;
+    uint32 uiReLogin = 6;
+    int32  iSeqId = 7;
+    uint32 uiProvince = 8;
+    string strProvinceName = 9;
+    uint32 uiGmLevel = 10;
+    string strDeviceId = 11;
+    uint32 uiProArea = 12;
+    bool bAntiAdd = 13;
+    string strChannel = 14;
+    string strCityCode = 15;
+}
+
+message Msg_ServerInner_GG_Login_Rsp
+{
+    int64 llUserId = 1;
+    ResultCode eFlag = 2;
+    int32 iSeqId = 3;
+    int64 llRoleId = 4;
+    bool bRequest = 5;
+    EPlayerStatus eState = 6;
+    int64 llOpenDate = 7;
+    string strUserName = 8;
+    uint32 uiBanTime = 9;
+}
+
+message Msg_ServerInner_GG_Create_Req
+{
+    int64 llUserId = 1;
+    uint32 uiCareerId = 2;
+    uint32 uiGender = 3;
+    string strUserName = 4;
+    uint32 uiIconId = 5;
+    uint32 uiSeqId = 6;
+}
+
+message Msg_ServerInner_GG_Create_Rsp
+{
+    int64 llUserId = 1;
+    string strUserName = 2;
+    int32 iLevel = 4;
+    int64 llCreateTime = 5;
+    ResultCode eCode = 6;
+    int32 iSeqId = 7;
+}
+
+message Msg_ServerInner_GG_Save_Ntf
+{
+	int64 llPlayerId = 1;
+	uint32 uiSaveFlag = 2;
+	string strMsg = 3;
+	uint32 uiGateId = 4;
+}
+
+message Msg_ServerInner_GG_Kick_Notify
+{
+    int64 llUserId = 1;
+    int32 uiSaveFlag = 2;
+    int32 uiSeqId = 3;
+    ResultCode eCode = 4;
+}
+
+message Msg_ServerInner_GG_Msg_Notify
+{
+    repeated int64 vecPlayerId = 1;
+    bytes strCmdMsg = 2;
+    uint32 uiModuleId = 3;
+    uint32 uiCmdId = 4;
+    uint32 uiInterval = 5;
+}
+
+////////////////////////////////////////////////////////////////
+message Msg_ServerInner_GS_RecordOnline
+{
+	uint32 uiServerId = 1;
+	int64 llCurTime = 2;
+	uint32 uiOnlineNum = 3;
+	uint32 uiWaitNum = 4;
+	string strIp = 5;
+	uint32 uiPort = 6;
+	uint32 uiAreaNo = 7;
+	uint32 uiMaxNum = 8;
+	string strVersion = 9;
+}
+
+message Msg_ServerInner_GS_ClearOnline
+{
+	uint32 uiServerId = 1;
+	int64 llCurTime = 2;
+	uint32 uiAreaNo = 3;
+}
+
+message Msg_ServerInner_GS_NotifyOnline
+{
+	uint32 uiServerId = 1;
+	int64 llPlayerId = 2;
+	int64 llCurTime = 3;
+}
+
+message Msg_ServerInner_GS_NotifyLogout
+{
+	uint32 uiServerId = 1;
+	int64 llPlayerId = 2;
+	int64 llCurTime = 3;
+}
+		
+message Msg_ServerInner_GS_PlayerLoginReq
+{
+	int64 llPlayerId = 1;
+	string strSessionId = 2;
+	uint32 uiServerId = 3;
+}
+
+message Msg_ServerInner_GS_PlayerLoginRsp
+{
+	int64 llPlayerId = 1;
+	ResultCode eResult = 2;
+	uint32 uiGameId = 3;
+	uint32 uiProvince = 4;
+	string strProvinceName = 5;
+	string strSessionId = 6;
+	uint32 uiGmLevel = 7;
+	string strDevId = 8;
+	uint32 uiProArea = 9;
+	string strChannel = 10;
+	string strPlayerName = 11;
+	string strCityCode = 12;
+}	
+
+message Msg_ServerInner_GS_UniqueIdReq
+{
+	int64 llPlayerId = 1;
+	string strPlayerName = 2;
+	uint32 uiServerId = 3;
+}
+	
+message Msg_ServerInner_GS_UniqueIdRsp
+{
+	int64 llPlayerId = 1;
+	string strPlayerName = 2;
+	ResultCode eRet = 3;
+}
+
+message Msg_ServerInner_GS_KickPlayerNotify
+{
+	int64 llPlayerId = 1;
+}
+		
+message Msg_ServerInner_GS_TransmitNotify
+{
+	int64 llPlayerId = 1;
+	string strPlayerName = 2;
+	uint32 uiServerId = 3;
+	uint32 uiAreaNo = 4;
+	bool bGm = 5;
+}
+		
+message Msg_ServerInner_GS_WMsg
+{
+	string strClient = 1;
+	string strServer = 2;
+	string strMsg = 3;
+}
+
+message Msg_ServerInner_GS_ModifyNameReq
+{
+	int64 llPlayerId = 1;
+	string strPlayerName = 2;
+	uint32 uiServerId = 3;
+	uint32 uiAreaNo = 4;
+	bool bGm = 5;
+}
+		
+message Msg_ServerInner_GS_ModifyNameRsp
+{
+	int64 llPlayerId = 1;
+	string strPlayerName = 2;
+	ResultCode eRet = 3;
+	bool bGm = 4;
+}
+
+message Msg_ServerInner_GS_UpdatePlayer
+{
+	Svr_Player_Info oPlayer = 1;
+	bool bLogin = 2;
+}
+
+message Msg_ServerInner_GS_UpdateRmb
+{
+	int64 llPlayerId = 1;
+	uint32 uiRmb = 2;
+	uint32 uiRechare = 3;
+}	

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CUser.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CUserManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CServerNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CSession.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CSysLogic.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="SysHttpFunc.cpp">
+      <Filter>Http</Filter>
+    </ClCompile>
+    <ClCompile Include="CDbIntance.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="SysServer.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CUser.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CServerNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CSession.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CSysLogic.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SysHttpFunc.h">
+      <Filter>Http</Filter>
+    </ClInclude>
+    <ClInclude Include="CDbInstance.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Player">
+      <UniqueIdentifier>{82d9f8ac-1f5f-4068-b6a2-32bd9d89ca1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netface">
+      <UniqueIdentifier>{bbfb2f57-6291-46cc-893d-8b46da10f4d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainLogic">
+      <UniqueIdentifier>{046da82f-28f1-4f86-969f-b888999cf278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{b81c64b3-a985-4a15-a61f-84824de5241e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Http">
+      <UniqueIdentifier>{5011272f-de31-4d92-a4a3-c77d4f8fdfe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{9e03da52-bca0-4901-9e63-873dd57e29da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

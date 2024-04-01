@@ -1,0 +1,34 @@
+syntax = "proto3";
+package ProtoMsg;
+
+message MsgModule_Ranker
+{
+	enum MsgCmd
+	{
+		Msg_Ranker_None								= 0;
+		Msg_Ranker_GetRankerList_Req				= 1;		//获取排行榜列表
+		Msg_Ranker_GetRankerList_Rsp				= 2;
+	}
+}
+
+message ranker_info_t
+{
+	int32 iRank = 1;							//排行榜名次
+	int64 llUserId = 2;							//玩家唯一id
+	int32 iScore = 3;							//战斗力、积分等等
+	int32 iHeadId = 4;							//头像id
+	int32 iFrameId = 5;							//头像框id
+	int32 iLevel = 6;							//玩家等级
+	string strName = 7;							//玩家昵称
+}
+
+message Msg_Ranker_GetRankerList_Req
+{
+}
+
+message Msg_Ranker_GetRankerList_Rsp
+{
+	ranker_info_t oOwnRanker = 1;						//自己战力排行榜信息
+	repeated ranker_info_t vecRankerList = 2;			//战力排行榜信息
+}
+

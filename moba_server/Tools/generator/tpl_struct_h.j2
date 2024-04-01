@@ -1,0 +1,50 @@
+#pragma once
+#include <string>
+#include <iterator>
+using namespace std;
+
+/*
+you need copy next code to msg_module_serverdb.proto file, and gen proto
+Msg_ServerDB_GD_Update{{col_name}} = x
+
+message Msg_ServerDB_GD_Update{{col_name}}
+{
+    int64 llUserId = 1;
+    ServerDB_{{col_name}} oInfo = 2;
+{%- if col_type == 'list' %}
+    EDBOptType eOpt = 3;
+{%- endif %}
+}
+
+{% set index = namespace(value=0) -%}
+message ServerDB_{{col_name}}
+{
+    {%- for field in field_list %}
+    {%- set index.value = index.value + 1 %}
+    {%- if field.m_strType == 'time_t' or field.m_strType == 'int64_t' %}
+    int64 {{field.m_strPartName}} = {{index.value}};                         //{{field.m_strComment}}
+    {%- elif field.m_strType == 'int' %}
+    int32 {{field.m_strPartName}} = {{index.value}};          //{{field.m_strComment}}
+    {%- else %}
+    {{field.m_strType}} {{field.m_strPartName}} = {{index.value}};          //{{field.m_strComment}}
+    {%- endif %}
+    {%- endfor %}
+}
+
+{%- if col_type == 'list' %}
+repeated ServerDB_{{col_name}} vec{{col_name}} = x
+{%- else %}
+ServerDB_{{col_name}} o{{col_name}} = x
+{%- endif %}
+*/
+
+struct {{doc_name}}_t
+{
+{%- for field in field_list %}
+    {%- if field.m_strType == 'string' %}
+    {{field.m_strType}} {{field.m_strMemName}};
+    {%- else %}
+    {{field.m_strType}} {{field.m_strMemName}} = {{field.m_strDft}};        //{{field.m_strComment}}
+    {%- endif %}
+{%- endfor %}
+};

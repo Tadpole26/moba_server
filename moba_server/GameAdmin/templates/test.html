@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"> </script>
+        {% load static %}
+        <script src="{% static 'js/My97DatePicker/WdatePicker.js' %}"></script>
+    </head>
+
+    <body>
+        <span>开始时间:</span>
+    <input type="text" name="startDate" id = "startDate" readonly>
+    </body>
+
+
+    <script>
+        $("#startDate").focus(function () {
+                    console.log('fffffff');
+                   WdatePicker({dateFmt:'yyyy-MM-dd'})
+                })
+    </script>
+</html>
+

@@ -1,0 +1,14 @@
+<!--
+-->
+
+<table_info first_table_name="u_user" sec_table_name="user_info_object" sec_table_type="object" 
+class_name="CUserInfoRecord" cache_name="user_info_table_t" sync_ins= "SQL_TABLE_RECORD_CACHE_INS" file_name="CUserInfoRecord">
+
+	<field_info name="user_name"		                    type="string"  default="&quot;&quot;" comment="玩家昵称" />
+    <field_info name="user_level"		                    type="int"  default="0" comment="玩家等级" />
+    <field_info name="user_exp"		                        type="int"  default="0" comment="玩家经验" />
+    <field_info name="create_time"		                    type="time_t"  default="0" comment="创角时间" />
+    <field_info name="vip_level"		                    type="int"  default="0" comment="vip等级" />
+    <field_info name="vip_exp"			                    type="int"  default="0" comment="vip经验" />
+    <field_info name="inner_mail_add_id"			        type="int64_t"  default="0" comment="游戏内部邮件自增id" />
+</table_info>

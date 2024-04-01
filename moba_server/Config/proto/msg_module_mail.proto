@@ -1,0 +1,86 @@
+syntax = "proto3";
+import "msg_common.proto";
+package ProtoMsg;
+
+message MsgModule_Mail
+{
+	enum MsgCmd
+	{
+		Msg_Mail_None							= 0;
+		Msg_Mail_GetMailList_Req				= 1;		//获取邮件列表
+		Msg_Mail_GetMailList_Rsp				= 2;
+		Msg_Mail_MailList_Notify				= 3;		//邮件列表改变通知
+		Msg_Mail_ReadMail_Req					= 4;		//阅读邮件
+		Msg_Mail_ReadMail_Rsp					= 5;
+		Msg_Mail_DeleteMail_Req					= 6;		//删除邮件
+		Msg_Mail_DeleteMail_Rsp					= 7;		
+		Msg_Mail_ReciveAttach_Req				= 8;		//领取附件奖励
+		Msg_Mail_ReciveAttach_Rsp				= 9;		
+	}
+}
+
+enum enum_mail_t
+{
+	eMailType_None = 0;
+	eMailType_System = 1;		//系统后台发放邮件
+	eMailType_Game = 2;			//游戏内部生成邮件		
+}
+
+message mail_info_t
+{
+	enum_mail_t eType = 1;
+	int64 llMailId = 2;
+	int64 llBeginTime = 3;					//邮件开始时间
+	int64 llExpiredTime = 4;				//邮件过期时间
+	string strTitle = 5;					//邮件标题
+	string strSender = 6;					//邮件发送者
+	string strContent = 7;					//邮件内容
+	repeated game_item_t vecItem = 8;		//附件奖励
+	bool bRecived = 9;						//附件奖励是否领取
+}
+
+message Msg_Mail_GetMailList_Req
+{
+}
+
+message Msg_Mail_GetMailList_Rsp
+{
+	repeated mail_info_t vecMail = 1;
+}
+
+message Msg_Mail_MailList_Notify
+{
+	repeated mail_info_t vecMail = 1;
+}
+
+message Msg_Mail_ReadMail_Req
+{
+	int64 llMailId = 1;
+}
+
+message Msg_Mail_ReadMail_Rsp
+{
+	int64 llMailId = 1;
+	int64 llReadTime = 2;
+}
+
+message Msg_Mail_DeleteMail_Req
+{
+	int64 llMailId = 1;
+}
+
+message Msg_Mail_DeleteMail_Rsp
+{
+	int64 llMailId = 1;
+}
+
+message Msg_Mail_ReciveAttach_Req
+{
+	int64 llMailId = 1;
+}
+
+message Msg_Mail_ReciveAttach_Rsp
+{
+	int64 llMailId = 1;
+	repeated game_item_t vecItem = 2;
+}

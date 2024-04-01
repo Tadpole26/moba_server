@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>删除账号</title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"> </script>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+        <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="col-md-4 col-md-offset-4">
+                <h2 class="text-center">删除账号</h2>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">删除账号名</label>
+                        <input type="text" id="name" class="form-control" name="delname">
+                    </div>
+                    <div class="form-group">
+                        <label for="namecheck">删除账号名确认</label>
+                        <input type="text" id="namecheck" class="form-control" name="delnamecheck">
+                    </div>
+                    <input type="button" class="btn btn-success btn-block" value="确定" id="deleteBtn">
+            </div>
+        </div>
+
+        <script>
+            // 按钮发送ajax请求
+            $('#deleteBtn').click(function () {
+                // 可以再次使用form标签序列化功能 也可以自己挨个获取
+                $.ajax({
+                    url:'',
+                    type:'post',
+                    data:{
+                        'delname':$('#name').val(), 
+                        'delnamecheck':$('#namecheck').val(),
+                        'csrfmiddlewaretoken':'{{ csrf_token }}'},
+                    success:function (args) {
+                        if(args.code === 10000){
+                            window.location.href = args.url
+                        }else{
+                            // 课下可以使用sweetalert插件美化展示
+                            alert(args.msg)
+                            {#swal(args.msg,'error')#}
+                        }
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>

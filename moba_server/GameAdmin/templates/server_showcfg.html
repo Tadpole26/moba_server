@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "main-content col-md-10">
+    <table class="table">
+        <thread>
+            <tr>
+                <th>配置名</th>
+            </tr>
+        </thread>
+        <tbody>
+            {% for cfg in zkcfg_list %}
+            <tr>
+                <td>
+                    {{ cfg.name }}
+                    <div style="margin-left: 80%; margin-top: -2%;">
+                        <button type="button" class="btn btn-primary" onclick="getCfgBtn('{{ cfg.name }}')">查看</button>
+                        <button type="button" class="btn btn-primary" onclick="downCfgBtn('{{ cfg.name }}')">下载</button>
+                        <button type="button" class="btn btn-danger" onclick="delCfgBtn('{{ cfg.name }}')">删除</button>
+                    </div>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function getCfgBtn($name) {
+        var path = '/server_getcfg?name=' + $name;
+		window.location.href = path;
+	}
+
+    function downCfgBtn($name) {
+        var path = '/server_downcfg?name=' + $name;
+		window.location.href = path;
+	}
+
+    function delCfgBtn($name) {
+        var path = '/server_delcfg?name=' + $name;
+		window.location.href = path;
+	}
+</script>
+{% endblock %}
+

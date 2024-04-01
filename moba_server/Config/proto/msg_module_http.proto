@@ -1,0 +1,46 @@
+syntax = "proto3";
+import "result_code.proto";
+package ProtoMsg;
+
+message MsgModule_Http
+{
+	enum MsgCmd
+	{
+		Msg_Http_None					= 0;
+	}
+}
+
+message HttpRetMsg
+{
+	uint32 uiMsgId = 1;
+	bytes strMsg = 2;
+}
+
+message HttpGetUniqRolId
+{
+	int64 llPlayerId = 1;
+	uint32 uiState = 2;
+	uint32 uiServerId = 3;
+	string strPlayerName = 4;
+}
+
+message HttpUserLoginRet
+{
+	int64 llPlayerId = 1;
+	ResultCode eResult = 2;
+	uint32 uiGateId = 3;
+	int32 iProvince = 4;
+	string strProvinceName = 5;
+	string strSessionId = 6;
+	uint32 uiGmLevel = 7;
+	string strDevId = 8;
+	uint32 uiProArea = 9;
+}
+
+message HttpModifyNameRet
+{
+	int64 llPlayerId = 1;
+	ResultCode eResult = 2;
+	uint32 uiServerId = 3;
+	string strPlayerName = 4;
+}

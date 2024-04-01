@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MainLogic">
+      <UniqueIdentifier>{b91fba57-dfa2-4bda-96c6-4aa04ffff3fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netface">
+      <UniqueIdentifier>{9f308edb-369d-4451-9594-2888249db8a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{fe16e2d8-f48a-4de1-8382-692b22cf3b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{f0816dcf-20ab-492d-9fd0-8a662d44730b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Processor">
+      <UniqueIdentifier>{0a570b13-85cb-4193-bbd6-2d1445c40acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{21c3d062-38ca-4eb7-980a-f4bfe060f93f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Mail">
+      <UniqueIdentifier>{bf0650aa-7c8f-40c2-927b-9985f5d0d3a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Ranker">
+      <UniqueIdentifier>{95ad73b5-2b44-4b17-ae3e-3651a6c9dadd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Package">
+      <UniqueIdentifier>{89a571f3-66d9-4917-ae68-a5fef6f5d697}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameServer.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameLogic.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CGateSession.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CServerNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CSysNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CModuleProFactory.cpp">
+      <Filter>Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="CProcessorBase.cpp">
+      <Filter>Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="CZkOperation.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CUserConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CCrossNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CLoginProcessor.cpp">
+      <Filter>Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeroProcessor.cpp">
+      <Filter>Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CUser.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="CUserManager.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="CDBNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CBaseInfoPackage.cpp">
+      <Filter>Package</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CGameLogic.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CGateSession.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CServerNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CSysNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CUser.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="CModuleProFactory.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="CErrorProcessor.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="CProcessorBase.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="CZkOperation.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CCrossNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CLoginProcessor.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeroProcessor.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CRankerMgr.h">
+      <Filter>Managers\Ranker</Filter>
+    </ClInclude>
+    <ClInclude Include="CRankerInfo.h">
+      <Filter>Managers\Ranker</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserManager.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="CDBNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CBaseInfoPackage.h">
+      <Filter>Package</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

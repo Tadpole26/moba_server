@@ -1,0 +1,128 @@
+syntax = "proto3";
+import "msg_common.proto";
+import "result_code.proto";
+package ProtoMsg;
+
+message MsgModule_Battle
+{
+	enum MsgCmd
+	{
+		Msg_Battle_None							= 0;
+		Msg_Battle_RoomHeartbeat_Rsp			= 1;		//房间心跳包推送 + 当前时间帧所需指令
+		Msg_Battle_EnterRoom_Req				= 2;		//客户端请求战斗房间数据
+		Msg_Battle_EnterRoom_Rsp				= 3;		//服务器回应战斗房间数据
+		Msg_Battle_StartRoom_Req				= 4;		//客户端已经准备好了,请求服务器开始战斗
+		Msg_Battle_StartRoom_Rsp				= 5;		//服务器回应客户端战斗房间是否开始或者失败原因
+		Msg_Battle_OrderRoom_Req				= 6;		//客户端向服务器提交指令数据
+		Msg_Battle_OrderRoom_Rsp				= 7;		//暂时无用
+		Msg_Battle_QuitRoom_Req					= 8;		//客户端请求登出房间
+		Msg_Battle_QuitRoom_Rsp					= 9;		//服务器回应登出房间
+		Msg_Battle_PauseRoom_Req				= 10;		//客户端请求暂停房间
+		Msg_Battle_PauseRoom_Rsp				= 11;		//服务器回应暂停房间
+		Msg_Battle_RecoverRoom_Req				= 12;		//客户端请求重连房间
+		Msg_Battle_RecoverRoom_Rsp				= 13;		//服务器回应重连房间
+		Msg_Battle_Result_Notify				= 14;		//击杀数评价(战报通知)
+		Msg_Battle_OverRoom_Req					= 15;		//房间战斗结果上报
+		Msg_Battle_OverRoom_Rsp					= 16;		//返回验算结果
+		Msg_Battle_GetRoomOrders_Req			= 17;		//获取房间指令
+		Msg_Battle_GetRoomOrders_Rsp			= 18;
+		Msg_Battle_SyncOrdersOver_Req			= 19;		//指令同步结束
+		Msg_Battle_SyncOrdersOver_Rsp			= 20;
+		Msg_Battle_Error_Notify					= 21;		//错误信息的推送
+		Msg_Battle_Beat_Req						= 22;		//服务器的Ping
+		Msg_Battle_Beat_Rsp						= 23;
+		Msg_RoomLoadProgress_Submit				= 24;
+		Msg_RoomLoadProgress_Notify				= 25;
+		Msg_RoomHeartbeat_Notify				= 26;		//房间心跳包推送 + 当前时间帧所需指令
+		Msg_RoomStart_Notify					= 27;		//游戏开始推送了
+	}
+}
+
+message Msg_Battle_Beat_Req
+{
+}
+
+message Msg_Battle_Beat_Rsp
+{
+}
+
+message Msg_Battle_EnterRoom_Req
+{
+	string strRoomSessionId = 1;	//要登录房间的session id
+	string strUserSessionId = 2;	//我的账号的session id
+}
+
+message Msg_Battle_EnterRoom_Rsp
+{
+	ERoomType eType = 1;			//房间类型
+	string strMapName = 2;			//战斗地图id
+	int32 iRandSeed = 3;			//随机数种子
+	ERoomStatus eStatus = 4;		//房间当前状态
+	int32 iRoomTime = 5;			//房间的运行时间
+	int32 iStartTime = 6;			//房间的开始时间
+}
+
+message Msg_Battle_Error_Notify
+{
+	uint32 uiModuleId = 1;
+	uint32 uiCmd = 2;
+	ResultCode eErrorCode = 3;
+}
+
+message battle_room_info_t
+{
+	string strSession = 1;
+	ERoomType eRoomType = 2;
+	string mapName = 3;				//战斗地图ID
+}
+
+message battle_order_t				//战斗中指令
+{
+	int32 iExecTime = 1;			//指令预期执行时间(从游戏开始计算)
+	int32 iUserId = 2;				//指令归属玩家
+	int32 iType = 3;				//指令类型
+	int32 iArg1 = 4;				//指令参数1
+	int32 iArg2 = 5;				//指令参数2	
+}
+
+message Msg_Battle_OverRoom_Req 
+{
+	bytes oUserData = 1;			//玩家战斗日志
+	int32 iKeyType = 2;				//玩家按键
+	int32 iCrc = 3;					//crc
+}
+
+message Msg_Battle_OverRoom_Rsp
+{
+
+}
+
+message load_progress_info_t
+{
+	int64 llUserid = 1;
+	int32 iProgress = 2;
+}
+
+message Msg_RoomLoadProgress_Notify
+{
+	repeated load_progress_info_t vecLoad = 1;
+}
+
+message Msg_RoomHeartbeat_Notify
+{
+	int32 iServerTime = 1;
+	int32 iRoomTime = 2;
+	repeated battle_order_t vecOrders = 3;
+}
+
+message Msg_RoomStart_Notify
+{
+	int32 iServerTime = 1;
+	int32 iRoomTime = 2;
+}
+
+message Msg_Battle_Result_Notify
+{
+	EBRCode eReusltCode = 1;		//战斗结果
+	repeated user_battle_result_t vecData = 2;
+}

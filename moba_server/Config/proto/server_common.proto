@@ -1,0 +1,27 @@
+syntax = "proto3";
+import "msg_common.proto";
+package ProtoMsg;
+
+//存放服务器内部使用的协议
+
+message Svr_Player_Info		//其它服务器保存的玩家的基础信息
+{
+	int64 llPlayerId = 1;
+	string strPlayerName = 2;
+	uint32 uiLevel = 3;
+	uint32 uiGender = 4;
+	EPlayerStatus ePlayerStatus = 5;
+	int64 llLogoutTime = 6;
+	uint32 uiGameId = 7;
+	uint32 uiGateId = 8;
+	string strDevId = 9;
+	string strChannel = 10;
+	string strClientIp = 11;
+	string strCityCode = 12;
+	string strAccName = 13;
+	string strAppVersion = 14;
+	int64 llLoginTime = 15;
+}
+
+
+

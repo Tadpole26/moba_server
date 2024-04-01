@@ -1,0 +1,123 @@
+syntax = "proto3";
+import "msg_common.proto";
+import "result_code.proto";
+package ProtoMsg;
+
+message MsgModule_ServerBattle
+{
+	enum MsgCmd
+	{
+		Msg_ServerBattle_None					= 0;
+		Msg_ServerBattle_BC_Register_Req		= 1;	//战斗服向中心服务器注册(battle->bcenter->cross)
+		Msg_ServerBattle_BC_Register_Rsp		= 2;
+		Msg_ServerBattle_CB_CreateRoom_Req		= 3;	//中心服请求创建战斗房间(cross->bcenter->battle)
+		Msg_ServerBattle_CB_CreateRoom_Rsp		= 4;
+		Msg_ServerBattle_BC_Heart_Req			= 5;	//向中心服发送心跳(battle->bcenter->cross)
+		Msg_ServerBattle_BC_Heart_Rsp			= 6;
+		Msg_ServerBattle_BC_RoomInfo_Notify		= 7;	//向中心服提交房间状态(battle->bcenter)
+		Msg_ServerBattle_BC_LoadInfo_Notify		= 8;	//向中心服提交负载情况(battle->bcenter)
+		Msg_ServerBattle_BC_Result_Notify		= 9;	//向中心服提交战报(battle->bcenter)
+		
+		//Msg_ServerBattle_GC_UserOnlineReq
+	}
+}
+	
+//////////////////////////////////////////////////////////////////////
+message Msg_ServerBattle_BC_Register_Req
+{
+	string strIp = 1;
+	int32 iPort = 2;
+	int32 iMaxRoomNum = 3;
+	int32 iId = 4;
+	int32 iServerArea = 5;
+	int32 iMaxUserNum = 6;
+	int32 iCurUser = 7;			//当前玩家数
+	int32 iCurRoom = 8;			//当前房间数
+	string strLinkIp = 9;
+}
+
+message Msg_ServerBattle_BC_Register_Rsp
+{
+	int32 iServerId = 1;			//分配的serverid
+}
+
+message Msg_ServerBattle_CB_CreateRoom_Req
+{
+	int64 llRoomId = 1;
+	ERoomType eType = 2;								//房间类型
+	string strMapName = 3;								//战斗地图名字
+	int32 iMapId = 4;										//战斗地图id
+	int32 iMapSec = 5;									//战斗地图超时
+	repeated user_battle_info_t vecUserData = 6;		//玩家列表
+	string strRoomLogId = 7;							//房间session
+	int32 iInitArea = 8;									//初始的分区
+	bool bWaitLst = 9;									//是否开始排队
+	int32 iUserNum = 10;									//玩家的人数
+	int32 iRobotNum = 11;									//机器人数量
+	repeated user_battle_info_t vecObUserData = 12;		//观战玩家列表
+	ELeisureType eLeisureType = 13;						//休闲玩法类型
+}
+
+message user_conv_id_t
+{
+	int64 llUserid = 1;
+	int32 iConvId = 2;
+}
+
+message Msg_ServerBattle_CB_CreateRoom_Rsp
+{
+	int64 llRoomId = 1;
+	string strIp = 2;
+	int32 iPort = 3;
+	ResultCode eCode = 4;
+	string strRoomLogId = 5;
+	string strOldLogId = 6;
+	int32 iRoomAreaId = 7;
+	repeated user_conv_id_t vecUserConv = 8;
+	bool bUdp = 9;
+	int64 llCreateMs = 10;
+	string strLinkIp = 11;
+}
+
+message Msg_ServerBattle_BC_Heart_Req
+{
+}
+
+message Msg_ServerBattle_BC_Heart_Rsp
+{
+}
+
+message Msg_ServerBattle_BC_RoomInfo_Notify
+{
+	int64 llRoomId = 1;
+	ERoomStatus eStatus = 2;
+	int32 iUserNum = 3;
+	string strRoomLogId = 4;	//房间session
+}
+
+message Msg_ServerBattle_BC_LoadInfo_Notify
+{
+	int32 iRoomNum = 1;
+	int32 iUserNum = 2;
+}
+
+message room_data_t
+{
+	ERoomStatus eStatus = 1;		//房间状态
+	EBRCode eResFail = 2;			//战斗结果存在不一致
+	int32 iBattleSec = 3;			//战斗时长
+	bool bNoFullRes = 4;			//结果上报的和匹配的人数不一致
+	int32 iOrderSize = 5;			//总共动作数
+	int64 llMaxFrames = 6;			//最大房间帧差距
+	int64 llMinFrames = 7;			//最小房间帧差距
+	int32 iRoomAreanId = 8;			//战斗蒋健的区id编号
+	bool bHaveDiffRes = 9;			//是否有不同的结果
+}
+
+message Msg_ServerBattle_BC_Result_Notify
+{
+	int64 llRoomId = 1;
+	repeated user_battle_result_t vecResult = 2;
+	room_data_t oRoomData = 3;
+	string strRoomLogId = 4;		//房间session
+}

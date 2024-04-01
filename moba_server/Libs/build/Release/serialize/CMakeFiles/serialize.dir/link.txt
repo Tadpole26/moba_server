@@ -1,0 +1,2 @@
+/usr/bin/ar qc /root/Duncan/project/roll_server/Bin/Libs/linux/libserialize.a CMakeFiles/serialize.dir/msg_make.cpp.o CMakeFiles/serialize.dir/parse_pb.cpp.o CMakeFiles/serialize.dir/pch.cpp.o CMakeFiles/serialize.dir/serialize.cpp.o CMakeFiles/serialize.dir/svr_client.cpp.o
+/usr/bin/ranlib /root/Duncan/project/roll_server/Bin/Libs/linux/libserialize.a

@@ -1,0 +1,13 @@
+<!--
+	注意:sec_table_type为list,sec_key=true的字段名必须为id!!!!
+	注意:这里普通字段一定要用int,int64_t,自动生成代码会出现负数
+-->
+
+<table_info first_table_name="u_user" sec_table_name="user_item_list" sec_table_type="list" 
+class_name="CUserItemRecord" cache_name="user_item_table_t" sync_ins= "SQL_TABLE_RECORD_CACHE_INS" file_name="CUserItemRecord">
+
+	<field_info name="id"				type="int"  	default="0" sec_key="true" comment="道具唯一id" />
+	<field_info name="item_num"		    type="int"  	default="0" comment="道具数量" />
+    <field_info name="item_time"		type="time_t"   default="0" comment="道具获取时间" />
+	
+</table_info>

@@ -1,0 +1,410 @@
+[DEBUG]  [2023-03-13 13:50:37,428] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 13:50:37,537] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 13:50:37,538] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 13:50:37,539] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 13:50:40,374] [CMysqlClient.py:41] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[DEBUG]  [2023-03-13 13:50:40,482] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[DEBUG]  [2023-03-13 13:50:40,486] [CMysqlClient.py:20] ------->>>>[replace into account_id (stub) values ('a'); ]
+[DEBUG]  [2023-03-13 13:50:40,503] [CMysqlClient.py:72] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(841,"Duncan","123456");insert into account_info_1(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(841,0,"'ios'","1","1"); ]
+[DEBUG]  [2023-03-13 13:50:40,504] [CMysqlClient.py:20] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(841,"Duncan","123456");insert into account_info_1(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(841,0,"'ios'","1","1"); ]
+[INFO]  [2023-03-13 13:50:40,510] [web.py:2271] ------->>>>[304 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 139.94ms ]
+[DEBUG]  [2023-03-13 13:51:51,035] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 13:51:51,128] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 13:51:51,128] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 13:51:51,129] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 13:51:55,531] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[DEBUG]  [2023-03-13 13:51:55,535] [CMysqlClient.py:20] ------->>>>[replace into account_id (stub) values ('a'); ]
+[DEBUG]  [2023-03-13 13:51:55,551] [CMysqlClient.py:20] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(842,"Duncan","123456");insert into account_info_2(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(842,0,"'ios'","1","1"); ]
+[INFO]  [2023-03-13 13:51:55,560] [web.py:2271] ------->>>>[304 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 150.60ms ]
+[DEBUG]  [2023-03-13 13:52:39,068] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 13:52:39,153] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 13:52:39,154] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 13:52:39,155] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 13:52:42,129] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[DEBUG]  [2023-03-13 13:52:42,132] [CMysqlClient.py:20] ------->>>>[replace into account_id (stub) values ('a'); ]
+[DEBUG]  [2023-03-13 13:52:42,148] [CMysqlClient.py:20] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(843,"Duncan","123456");insert into account_info_3(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(843,0,"'ios'","1","1"); ]
+[INFO]  [2023-03-13 13:52:42,154] [web.py:2271] ------->>>>[304 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 132.65ms ]
+[DEBUG]  [2023-03-13 14:00:06,671] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 14:00:06,772] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 14:00:06,773] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 14:00:06,773] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 14:00:12,880] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[DEBUG]  [2023-03-13 14:00:12,886] [CMysqlClient.py:20] ------->>>>[replace into account_id (stub) values ('a'); ]
+[DEBUG]  [2023-03-13 14:00:12,905] [CMysqlClient.py:20] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(844,"Duncan","123456");insert into account_info_4(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(844,0,"'ios'","127:0:0:1","1","1"); ]
+[INFO]  [2023-03-13 14:00:12,911] [web.py:2271] ------->>>>[304 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 122.75ms ]
+[DEBUG]  [2023-03-13 14:12:04,296] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 14:12:04,401] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 14:12:04,402] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 14:12:04,402] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 14:12:07,059] [CMysqlClient.py:34] ------->>>>[s ]
+[ERROR]  [2023-03-13 14:12:07,061] [CMysqlClient.py:40] ------->>>>[(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's' at line 1") ]
+[ERROR]  [2023-03-13 14:12:07,065] [CMysqlClient.py:60] ------->>>>[execute() first ]
+[ERROR]  [2023-03-13 14:12:07,067] [web.py:1798] ------->>>>[Uncaught exception GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CAppHandler.py", line 13, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CAppHandler.py", line 42, in _process
+    msg, code, acc_name, acc_password = Account.AccountRegister(params['device'],
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CAccount.py", line 23, in AccountRegister
+    if len(loginRows) > 0:
+       ^^^^^^^^^^^^^^
+TypeError: object of type 'int' has no len()
+[ERROR]  [2023-03-13 14:12:07,089] [web.py:2271] ------->>>>[500 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 133.64ms ]
+[DEBUG]  [2023-03-13 14:14:04,989] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 14:14:05,065] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 14:14:05,066] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 14:14:05,068] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 14:14:07,289] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[DEBUG]  [2023-03-13 14:14:07,292] [CMysqlClient.py:20] ------->>>>[replace into account_id (stub) values ('a'); ]
+[DEBUG]  [2023-03-13 14:14:07,309] [CMysqlClient.py:35] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(845,"Duncan","123456"); ]
+[DEBUG]  [2023-03-13 14:14:07,310] [CMysqlClient.py:35] ------->>>>[insert into account_info_0(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(845,0,"'ios'","127:0:0:1","1","1"); ]
+[INFO]  [2023-03-13 14:14:07,331] [web.py:2271] ------->>>>[200 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 164.72ms ]
+[DEBUG]  [2023-03-13 14:15:05,887] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[INFO]  [2023-03-13 14:15:05,890] [web.py:2271] ------->>>>[200 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 3.99ms ]
+[DEBUG]  [2023-03-13 15:31:27,211] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 15:31:27,302] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 15:31:27,303] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 15:31:27,304] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[WARNING]  [2023-03-13 15:31:43,932] [web.py:1796] ------->>>>[400 GET /Login?huawei_10086&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13promax&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1): Missing argument sid ]
+[WARNING]  [2023-03-13 15:31:43,935] [web.py:2271] ------->>>>[400 GET /Login?huawei_10086&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13promax&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1) 7.95ms ]
+[WARNING]  [2023-03-13 15:32:31,649] [web.py:1796] ------->>>>[400 GET /Login?sid=huawei_10086&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13promax&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1): Missing argument platform ]
+[WARNING]  [2023-03-13 15:32:31,651] [web.py:2271] ------->>>>[400 GET /Login?sid=huawei_10086&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13promax&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1) 2.95ms ]
+[DEBUG]  [2023-03-13 15:34:58,488] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[INFO]  [2023-03-13 15:34:58,495] [web.py:2271] ------->>>>[200 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 92.75ms ]
+[DEBUG]  [2023-03-13 15:34:58,503] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[INFO]  [2023-03-13 15:34:58,507] [web.py:2271] ------->>>>[304 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 5.98ms ]
+[DEBUG]  [2023-03-13 15:35:08,913] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[INFO]  [2023-03-13 15:35:08,918] [web.py:2271] ------->>>>[304 GET /Register?device=%27ios%27&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 6.98ms ]
+[WARNING]  [2023-03-13 15:35:24,845] [web.py:1796] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1): Missing argument platform ]
+[WARNING]  [2023-03-13 15:35:24,848] [web.py:2271] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1) 3.99ms ]
+[DEBUG]  [2023-03-13 15:36:10,693] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 15:36:10,863] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 15:36:10,864] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 15:36:10,865] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 15:36:34,929] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "Duncan"; ]
+[INFO]  [2023-03-13 15:36:34,937] [web.py:2271] ------->>>>[200 GET /Register?device=ios&channel=1&platform=1&timestamp=54643533&sign=argfbfhgyg&acc_name=Duncan&acc_password=123456 (127.0.0.1) 84.62ms ]
+[WARNING]  [2023-03-13 15:36:47,556] [web.py:1796] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1): Missing argument platform ]
+[WARNING]  [2023-03-13 15:36:47,559] [web.py:2271] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=afgrthffht&channel=apple&os=fegrrr&model=iphon13&t=1678689223&sub_channel=vx&idfa_imei=ffeevbefe&sign=argfbfhgyg (127.0.0.1) 4.99ms ]
+[DEBUG]  [2023-03-13 15:43:03,102] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 15:43:03,207] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 15:43:03,208] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 15:43:03,210] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[WARNING]  [2023-03-13 15:43:04,476] [web.py:1796] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1): Missing argument platform ]
+[WARNING]  [2023-03-13 15:43:04,485] [web.py:2271] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 12.97ms ]
+[WARNING]  [2023-03-13 15:43:37,662] [web.py:1796] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1): Missing argument platform ]
+[WARNING]  [2023-03-13 15:43:37,664] [web.py:2271] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 3.16ms ]
+[WARNING]  [2023-03-13 15:44:00,205] [web.py:1796] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1): Missing argument platform ]
+[WARNING]  [2023-03-13 15:44:00,207] [web.py:2271] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 9889.63ms ]
+[WARNING]  [2023-03-13 15:44:43,467] [web.py:1796] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1): Missing argument platform ]
+[WARNING]  [2023-03-13 15:44:43,470] [web.py:2271] ------->>>>[400 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 30896.54ms ]
+[DEBUG]  [2023-03-13 15:45:45,132] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 15:45:45,244] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 15:45:45,245] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 15:45:45,245] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[INFO]  [2023-03-13 15:45:46,582] [web.py:2271] ------->>>>[200 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 6.98ms ]
+[DEBUG]  [2023-03-13 17:18:07,330] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:18:07,444] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:18:07,446] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:18:07,448] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[ERROR]  [2023-03-13 17:18:18,576] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 62, in _process
+    accName = sdk.Verify(params['sid'], params['token'], params['sub_channel'])
+              ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'Verify'
+[ERROR]  [2023-03-13 17:18:18,595] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 22.94ms ]
+[DEBUG]  [2023-03-13 17:33:03,017] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:33:03,111] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:33:03,112] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:33:03,112] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[INFO]  [2023-03-13 17:33:05,763] [web.py:2271] ------->>>>[200 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 5.98ms ]
+[INFO]  [2023-03-13 17:33:34,419] [web.py:2271] ------->>>>[304 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 13967.24ms ]
+[DEBUG]  [2023-03-13 17:33:57,959] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:33:58,077] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:33:58,078] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:33:58,079] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[ERROR]  [2023-03-13 17:34:01,367] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    account.SdkCheck(accName, params['channel'], params['dev'], params['os'], params['model'], params['idfa_imei'])
+TypeError: CAccount.SdkCheck() missing 1 required positional argument: 'client_ver'
+[ERROR]  [2023-03-13 17:34:01,382] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 17.77ms ]
+[DEBUG]  [2023-03-13 17:36:00,100] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:36:00,210] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:36:00,210] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:36:00,211] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 17:36:05,305] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[ERROR]  [2023-03-13 17:36:05,310] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    account.SdkCheck(accName, params['channel'], params['dev'], params['os'], params['model'], params['idfa_imei'])
+  File "D:\Dream\GameApi\CAccount.py", line 42, in SdkCheck
+    if len(loginRows) == 0:
+       ^^^^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+[ERROR]  [2023-03-13 17:36:05,336] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 126.90ms ]
+[DEBUG]  [2023-03-13 17:37:14,611] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:37:14,720] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:37:14,720] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:37:14,721] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 17:40:00,439] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[ERROR]  [2023-03-13 17:40:00,451] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    account.SdkCheck(accName, params['channel'], params['dev'], params['os'], params['model'], params['idfa_imei'])
+  File "D:\Dream\GameApi\CAccount.py", line 42, in SdkCheck
+    if len(loginRows) == 0:
+       ^^^^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+[ERROR]  [2023-03-13 17:40:00,473] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 163244.11ms ]
+[DEBUG]  [2023-03-13 17:44:59,796] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 17:44:59,919] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 17:44:59,920] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 17:44:59,920] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 17:45:08,449] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[INFO]  [2023-03-13 17:45:08,457] [web.py:2271] ------->>>>[200 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 5870.81ms ]
+[DEBUG]  [2023-03-13 18:05:14,246] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 18:05:14,379] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 18:05:14,380] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 18:05:14,381] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 18:05:17,588] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[DEBUG]  [2023-03-13 18:05:17,591] [CMysqlClient.py:20] ------->>>>[replace into account_id (stub) values ('a'); ]
+[DEBUG]  [2023-03-13 18:05:17,609] [CMysqlClient.py:35] ------->>>>[insert into account(acc_id, acc_name, acc_password) values(846,"iosapple111","123456"); ]
+[DEBUG]  [2023-03-13 18:05:17,610] [CMysqlClient.py:35] ------->>>>[insert into account_info_1(acc_id, acc_first_login, dev_uid, acc_register_ip, channel, platform) values(846,0,"bbb","127:0:0:1","apple","apple"); ]
+[INFO]  [2023-03-13 18:05:17,664] [web.py:2271] ------->>>>[304 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 192.06ms ]
+[DEBUG]  [2023-03-13 18:18:08,406] [proactor_events.py:633] ------->>>>[Using proactor: IocpProactor ]
+[DEBUG]  [2023-03-13 18:18:08,490] [connection.py:913] ------->>>>[caching sha2: Trying fast path ]
+[DEBUG]  [2023-03-13 18:18:08,490] [connection.py:949] ------->>>>[caching sha2: Trying full auth... ]
+[DEBUG]  [2023-03-13 18:18:08,491] [connection.py:971] ------->>>>[-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5k9xdzcqye9Sg0T1m/D
+gTX5gP/pNogknZPKszz8DzAdTHopH8HaCAfJ6maELwwb2LwmVNlH4bUmQSh8AGKI
+fuVgqUOdRdtnFlRFT+dUhqgH4sssaHSeAM7dq+/mcKQKYXDjXcDo3w1bGN/7VspZ
+0Zx6+JLZvUC/5hIwkRaTteTpQK1hM3s49B1bJUClUpGK5voqcp1yhd+J0Ulyw1J3
+5647nb97yQxux/7nMM2mQ2nCbesz9Q0J5vN938HA+gT9WXSBgCjM4EoKCParac2p
+DpKOgl6f8MLU94g9eT90OV4Lgbu/UwtlV8WHR33qRbTpp43H2gVbtoTN2grkh65h
+JwIDAQAB
+-----END PUBLIC KEY-----
+ ]
+[DEBUG]  [2023-03-13 18:18:10,172] [CMysqlClient.py:20] ------->>>>[select * from account where acc_name = "iosapple111"; ]
+[ERROR]  [2023-03-13 18:18:10,177] [web.py:1798] ------->>>>[Uncaught exception GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1)
+HTTPServerRequest(protocol='http', host='127.0.0.1:9999', method='GET', uri='/Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb', version='HTTP/1.1', remote_ip='127.0.0.1') ]
+Traceback (most recent call last):
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\web.py", line 1713, in _execute
+    result = await result
+             ^^^^^^^^^^^^
+  File "C:\Users\xudk\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\gen.py", line 234, in wrapper
+    yielded = ctx_run(next, result)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 27, in get
+    content = yield self._process()
+                    ^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CLoginHandler.py", line 77, in _process
+    msg, code, acc_id, acc_pwd = account.SdkCheck(
+                                 ^^^^^^^^^^^^^^^^^
+  File "D:\Dream\GameApi\CAccount.py", line 51, in SdkCheck
+    self.m_accountId = loginRows['acc_id']
+                       ~~~~~~~~~^^^^^^^^^^
+TypeError: tuple indices must be integers or slices, not str
+[ERROR]  [2023-03-13 18:18:10,196] [web.py:2271] ------->>>>[500 GET /Login?sid=apple111&token=123456&dev=bbb&channel=apple&sub_channel=vx&os=aaa&model=iphon13&t=1678689223&idfa_imei=fff&sign=argfb (127.0.0.1) 144.92ms ]

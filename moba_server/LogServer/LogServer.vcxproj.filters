@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DB">
+      <UniqueIdentifier>{0641e99f-e837-4c64-8294-bb52c82057e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainLogic">
+      <UniqueIdentifier>{a131ed20-980d-4e77-85db-0d7392cd8004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netface">
+      <UniqueIdentifier>{92e8dbf7-57d1-44a8-9f2f-05c8581bd430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{fe7ccb02-c2ec-4080-99ef-5d88f2d59af0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CDbInstance.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="CLogLogic.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CServerNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CServerSession.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CDbInstance.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogLogic.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CServerNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CServerSession.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="LogServer.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

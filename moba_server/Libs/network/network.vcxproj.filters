@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="cir_queue.h" />
+    <ClInclude Include="cir_queue_cas.h" />
+    <ClInclude Include="cir_queue_gen.h" />
+    <ClInclude Include="cir_queue_mul.h" />
+    <ClInclude Include="event_thread.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="io_thread.h" />
+    <ClInclude Include="listen_thread.h" />
+    <ClInclude Include="logic_interface.h" />
+    <ClInclude Include="logic_thread.h" />
+    <ClInclude Include="msg_interface.h" />
+    <ClInclude Include="msg_parser.h" />
+    <ClInclude Include="msg_queue.h" />
+    <ClInclude Include="net_connection.h" />
+    <ClInclude Include="net_define.h" />
+    <ClInclude Include="net_opt.h" />
+    <ClInclude Include="reconn_event.h" />
+    <ClInclude Include="socket_pair_wrapper.h" />
+    <ClInclude Include="tcp_client.h" />
+    <ClInclude Include="thread_dispatcher.h" />
+    <ClInclude Include="time_event.h" />
+    <ClInclude Include="zk_event.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cir_queue_cas.cpp" />
+    <ClCompile Include="cir_queue_gen.cpp" />
+    <ClCompile Include="cir_queue_mul.cpp" />
+    <ClCompile Include="event_thread.cpp" />
+    <ClCompile Include="io_thread.cpp" />
+    <ClCompile Include="listen_thread.cpp" />
+    <ClCompile Include="logic_interface.cpp" />
+    <ClCompile Include="logic_thread.cpp" />
+    <ClCompile Include="msg_interface.cpp" />
+    <ClCompile Include="msg_parser.cpp" />
+    <ClCompile Include="msg_queue.cpp" />
+    <ClCompile Include="net_connection.cpp" />
+    <ClCompile Include="net_opt.cpp" />
+    <ClCompile Include="reconn_event.cpp" />
+    <ClCompile Include="socket_pair_wrapper.cpp" />
+    <ClCompile Include="tcp_client.cpp" />
+    <ClCompile Include="thread_dispatcher.cpp" />
+    <ClCompile Include="time_event.cpp" />
+    <ClCompile Include="zk_event.cpp" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CBattleLogic.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CCrossNetFace.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoom.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include="CBattleUser.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="CTcpSess.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="CTcpUdpLogic.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="CTcpLogic.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="CUdpLogic.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="CUdpSess.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoomThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleServer.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoomManager.cpp">
+      <Filter>Room</Filter>
+    </ClCompile>
+    <ClCompile Include="CUserManager.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogManager.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CBattleLogic.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CCrossNetFace.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoom.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include="CBattleUser.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="CTcpSess.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="CTcpUdpLogic.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="CTcpLogic.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="CUdpLogic.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="CUdpSess.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoomThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="CLogNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoomManager.h">
+      <Filter>Room</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserManager.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="CLogManager.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="MainLogic">
+      <UniqueIdentifier>{4de53c93-a394-4372-a0c3-55a684cbafde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netface">
+      <UniqueIdentifier>{9e071712-3e00-44ad-aa16-d07617a5a8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{1907fbf5-4d63-4770-b14c-46d3aacfed27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Room">
+      <UniqueIdentifier>{1c47507f-e777-44d9-83be-8c053acf38cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{a1d737ec-831f-491a-9dd2-7282a5eab6d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{684fd8e8-cabe-4836-91f4-cb8e8fe40d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{f248fd12-118d-4b04-b51c-cf252e75a91d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<!--
+    注意:sec_table_type为list,sec_key=true的字段名必须为id!!!!
+    注意:这里普通字段一定要用int,int64_t,自动生成代码会出现负数
+-->
+
+<table_info first_table_name="u_user" sec_table_name="user_card_list" sec_table_type="list" 
+class_name="CUserCardRecord" cache_name="user_card_table_t" sync_ins= "SQL_TABLE_RECORD_CACHE_INS" file_name="CUserCardRecord">
+
+	<field_info name="id"			    type="int"  default="0" sec_key="true" comment="卡牌唯一id" />
+	<field_info name="card_level"		type="int"  default="0" comment="卡牌等级" />
+    <field_info name="card_color"		type="int"  default="0" comment="卡牌品质" />
+    <field_info name="card_star"		type="int"  default="0" comment="卡牌星级" />
+	
+</table_info>

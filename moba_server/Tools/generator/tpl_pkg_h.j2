@@ -1,0 +1,65 @@
+#pragma once
+#include "{{st_file}}.h"
+namespace ProtoMsg
+{
+    class user_pb_data_t;
+}
+
+{%- set keyField = namespace(type='', mem_name='', cache_name='') -%}
+{%- for field in field_list %}
+{%- if field.m_strFKey == True %}
+{%-set keyField.type = field.m_strType -%}
+{%-set keyField.mem_name = field.m_strMemName -%}
+{%-set keyField.cache_name = field.m_strCacheName -%}
+{%-endif %}
+{%- endfor %}
+
+class CUser;
+class {{pkg_name}}
+{
+public:
+    {{pkg_name}}();
+    ~{{pkg_name}}();
+
+public:
+    void SetOwnerUser(CUser* pUserInfo) { m_pOwnerUser = pUserInfo; }
+    void Parse{{col_name}}FromDB(CUser* pUserInfo, const ProtoMsg::user_pb_data_t &oUserData);
+
+{%- if col_type == 'list' %}
+    //add one 
+    {{st_name}}* Add{{col_name}}({{keyField.type}} {{keyField.cache_name}});
+    bool Add{{col_name}}ToDB({{keyField.type}} {{keyField.cache_name}});
+    //delete one
+    bool Delete{{col_name}}({{keyField.type}} {{keyField.cache_name}});
+    bool Delete{{col_name}}ToDB({{keyField.type}} {{keyField.cache_name}});
+    //delete all 
+    bool Delete{{col_name}}();
+    bool Delete{{col_name}}ToDB();
+    //update one
+    bool Update{{col_name}}ToDB({{keyField.type}} {{keyField.cache_name}});
+    {{st_name}}* Get{{col_name}}({{keyField.type}} {{keyField.cache_name}});
+
+    std::map<{{keyField.type}}, {{st_name}}>& Get{{col_name}}Map() { return m_map{{col_name}}; }
+
+    void Clear();
+{%- else %}
+
+    bool Update{{col_name}}ToDB();
+    {% for field in field_list %}
+    {%- if field.m_strType == 'string' %}
+    void Set{{field.m_strBaseName}}(const {{field.m_strType}}& {{field.m_strPartName}}) { m_st{{col_name}}.{{field.m_strMemName}} = {{field.m_strPartName}}; }
+    {{field.m_strType}}& Get{{field.m_strBaseName}}() { return m_st{{col_name}}.{{field.m_strMemName}}; }
+    {%- else %}
+    void Set{{field.m_strBaseName}}({{field.m_strType}} {{field.m_strPartName}}) { m_st{{col_name}}.{{field.m_strMemName}} = {{field.m_strPartName}}; }
+    {{field.m_strType}} Get{{field.m_strBaseName}}() { return m_st{{col_name}}.{{field.m_strMemName}}; }
+    {%- endif %}
+    {% endfor %}
+{% endif %}
+private:
+    CUser* m_pOwnerUser = nullptr;
+    {%- if col_type == 'list' %}
+    std::map<{{keyField.type}}, {{st_name}}> m_map{{col_name}};
+    {%- else %}
+    {{doc_name}}_t m_st{{col_name}};
+    {% endif %}
+};

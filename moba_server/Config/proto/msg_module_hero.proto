@@ -1,0 +1,34 @@
+syntax = "proto3";
+package ProtoMsg;
+
+message MsgModule_Hero
+{
+	enum MsgCmd
+	{
+		Msg_Hero_None							= 0;
+		Msg_Hero_UpHeroLevel_Req				= 1;		//升级英雄卡牌
+		Msg_Hero_UpHeroLevel_Rsp				= 2;
+		Msg_Hero_UpHeroStar_Req					= 3;		//升星英雄卡牌
+		Msg_Hero_UpHeroStar_Rsp					= 4;
+	}
+}
+
+message Msg_Hero_UpHeroLevel_Req
+{
+	uint32 uiHeroId = 1;
+}
+
+message Msg_Hero_UpHeroLevel_Rsp
+{
+	uint32 uiCurLevel = 1;
+}
+
+message Msg_Hero_UpHeroStar_Req
+{
+	uint32 uiHeroId = 1;
+}
+
+message Msg_Hero_UpHeroStar_Rsp
+{
+	uint32 uiCurStar = 1;
+}

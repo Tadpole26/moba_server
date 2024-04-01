@@ -1,0 +1,19 @@
+<!--
+	注意:sec_table_type为list,sec_key=true的字段名必须为id!!!!
+	注意:这里普通字段一定要用int,int64_t,自动生成代码会出现负数
+-->
+
+<table_info first_table_name="u_user" sec_table_name="user_mail_list" sec_table_type="list" 
+class_name="CUserMailRecord" cache_name="user_mail_table_t" sync_ins= "SQL_TABLE_RECORD_CACHE_INS" file_name="CUserMailRecord">
+
+	<field_info name="id"				type="int64_t"  default="0" sec_key="true"	comment="邮件唯一id" />
+    <field_info name="mail_type"		type="int"      default="0" comment="邮件类型" />
+    <field_info name="send_time"  	    type="time_t"  	default="0" comment="发送时间" />
+    <field_info name="expired_time"  	type="time_t"  	default="0" comment="过期时间" />
+    <field_info name="is_delete"  	    type="bool"  	default="false" comment="是否删除" />
+	<field_info name="is_received"  	type="bool"  	default="false" comment="是否领取附件" />
+    <field_info name="titile"       	type="string"   default="" comment="邮件标题" />
+    <field_info name="sender"       	type="string"   default="" comment="邮件发送者" />
+    <field_info name="content"      	type="string"   default="" comment="邮件正文" />
+    <field_info name="attachment"   	type="string"   default="" comment="邮件附件" />
+</table_info>

@@ -1,0 +1,72 @@
+syntax = "proto3";
+import "result_code.proto";
+package ProtoMsg;
+
+message MsgModule_ServerDB
+{
+	enum MsgCmd
+	{
+		Msg_ServerDB_GD_None					= 0;
+        Msg_ServerDB_GD_GetUserInfo_Req			= 1;
+		Msg_ServerDB_GD_GetUserInfo_Rsp			= 2;
+		Msg_ServerDB_GD_CreateUser_Req			= 3;
+		Msg_ServerDB_GD_CreateUser_Rsp			= 4;
+		Msg_ServerDB_GD_UpdateBaseInfo			= 5;		//更新玩家基础数据
+	}
+}
+
+message ServerDB_BaseInfo
+{
+    int64 llUserId = 1;                         //玩家唯一id
+    string strAccount = 2;          //用户所属账号
+    string strUserNick = 3;          //用户昵称
+    int32 iGender = 4;          //用户性别
+    int32 iUserLevel = 5;          //用户等级
+    int32 iUserExp = 6;          //用户经验
+    int64 llCreateTime = 7;                         //创角时间
+    int64 llLoginTime = 8;                         //最近一次登录时间
+    int64 llLogoutTime = 9;                         //最近一次登出时间
+}
+
+message user_pb_data_t
+{
+	int64 llUserId = 1;
+	ServerDB_BaseInfo oBaseInfo = 2;
+}
+
+message buff_data_t 			//二进制数据
+{
+	bytes strBuffData = 1;
+	int32 iDataLen = 2;
+	bool bZip = 3;
+}
+
+message Msg_ServerDB_GD_GetUserInfo_Req
+{
+	int64 llUserId = 1;
+}
+
+message Msg_ServerDB_GD_GetUserInfo_Rsp
+{
+	buff_data_t oUserData = 1;
+	int64 llUserId = 2;
+	ResultCode eCode = 3;
+}
+
+message Msg_ServerDB_GD_CreateUser_Req
+{
+	int64 llUserId = 1;
+}
+
+message Msg_ServerDB_GD_CreateUser_Rsp
+{
+	ResultCode eCode = 1;
+	int64 llUserId = 2;
+}
+
+////////////generator/////////////
+message Msg_ServerDB_GD_UpdateBaseInfo
+{
+    int64 llUserId = 1;
+    ServerDB_BaseInfo oInfo = 2;
+}

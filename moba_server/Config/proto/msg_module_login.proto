@@ -1,0 +1,121 @@
+syntax = "proto3";
+import "msg_common.proto";
+import "result_code.proto";
+package ProtoMsg;
+
+message MsgModule_Login
+{
+	enum MsgCmd
+	{
+		Msg_Login_None					= 0;
+		Msg_Login_BeatHeart_Req			= 1;		//与客户端之间的心跳包(客户端一定时间不发,服务器会断开socket)
+		Msg_Login_BeatHeart_Rsp			= 2;
+		Msg_Login_Finish_Notify			= 3;
+		Msg_Login_LineUp_Norify			= 4;
+		Msg_Login_VerifyAccount_Req		= 5;		//登录账号校验(第一个消息)
+		Msg_Login_VerifyAccount_Rsp		= 6;
+		Msg_Login_CheckPlayerExist_Req	= 7;		//账号是否存在
+		Msg_Login_CheckPlayerExist_Rsp	= 8;
+		Msg_Login_CreateUser_Req		= 9;		//创角
+		Msg_Login_CreateUser_Rsp      	= 10;
+		Msg_Login_KickPlayer_Notify		= 11;
+		Msg_Login_Error_Notify			= 12;		//登录转发中错误返回
+	/////////////////////////////////////////////////////////////////////////////
+		Msg_Login_GetItemList_Req		= 13;
+		Msg_Login_GetItemList_Rsp		= 14;
+		Msg_Login_AwardItem_Req			= 15;
+		Msg_Login_AwardItem_Rsp			= 16;
+	}
+}
+
+message Msg_Login_BeatHeart_Req
+{
+}
+
+message Msg_Login_BeatHeart_Rsp
+{
+	int64	llServerTime = 1;	//服务器的时间
+}
+
+message Msg_Login_Finish_Notify
+{
+}
+
+message Msg_Login_LineUp_Norify
+{
+	uint32	uiSumNum = 1;
+	uint32	uiCurPos = 2;
+	uint32	uiWaitTime = 3;
+}
+
+message Msg_Login_VerifyAccount_Req
+{
+	int64 llUserId = 1;
+	string strUserName = 2;
+	string strPassword = 3;
+}
+
+message Msg_Login_VerifyAccount_Rsp
+{
+	int64 llUserId = 1;
+	string strUserName = 2;
+	int32 iFlag = 3;
+	uint32 uiGameId = 4;
+	int64 llServerTime = 5;			//服务器的时间
+	int32 iTimeZone = 6;			//服务器的时区(-12-12)
+	int64 llOpenDate = 7;			//开服时间
+	EPlayerStatus eStatus = 8;		//玩家当前状态
+	string strMsgKey = 9;			//消息的密钥
+	uint32 uiMsgRand = 10;			//消息的随机值
+}
+
+message Msg_Login_CreateUser_Req
+{
+	uint32 uiGender = 1;			//性别
+	string strUserName = 2;			//名字
+	uint32 uiIconId = 3;			//头像
+}
+
+message Msg_Login_CreateUser_Rsp
+{
+	int64 llUserId = 1;
+	string strUserName = 2;
+	uint32 uiLevel = 3;
+	int64 llCreateTime = 4;
+}
+
+message Msg_Login_KickPlayer_Notify
+{
+	int64 llAccId = 1;
+	string strAccName = 2;
+	int32 iFlag = 3;
+	uint32 uiGameId = 4;
+}
+
+message Msg_Login_Error_Notify
+{
+	uint32 uiModuleId = 1;
+	uint32 uiCmdId = 2;
+	ResultCode eErrorCode = 3;
+}
+
+message Msg_Login_GetItemList_Req
+{
+}
+
+message Msg_Login_GetItemList_Rsp
+{
+	repeated game_item_t vecItems = 1;
+}
+
+message Msg_Login_AwardItem_Req
+{
+	uint32 uiItemId = 1;
+	uint32 uiCount = 2;
+}
+
+message Msg_Login_AwardItem_Rsp
+{
+	uint32 uiItemId = 1;
+	uint32 uiCount = 2;
+}

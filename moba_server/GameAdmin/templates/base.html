@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"> </script>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+        <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link href="../static/css/common.css" rel="stylesheet">
+        <script src="{% static 'js/My97DatePicker/WdatePicker.js' %}"></script>
+    </head>
+
+    <body>
+        <div class="container" style="width: 100%;">
+            <div class="row" style="width: auto;">
+                <div class="col-md-2" style="background-color: #445566; box-shadow:inset 1px -1px 1px #444, inset -1px 1px 1px #444;height: 70px;">
+                    <h2 class="main-char text-left">游戏管理系统</h2>
+                </div>
+                <div class="main-rol-title col-md-10" >
+                    <div class="main-button btn-group btn-group-lg">
+                        <button type="button" class="btn btn-primary" id="accButton">账号管理</button>
+                        <button type="button" class="btn btn-primary" id="usrButton">玩家管理</button>
+                        <button type="button" class="btn btn-primary" id="svrButton">服务管理</button>
+                        <button type="button" class="btn btn-primary" id="mailButton">邮件管理</button>
+                        <button type="button" class="btn btn-primary" id="dataButton">数据管理</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class = "main-col-title col-md-2" style="background-color: #445566; box-shadow:inset 1px -1px 1px #444, inset -1px 1px 1px #444;height: 875px;">
+                    <br>
+                    {% csrf_token %}
+                    {% for list in select_list %}
+                    <a style="color: white; font-size: large;" href="javascript:showdiv('{{list.0.path}}', '{{list.0.name}}');" id={{list.0.path}}>+{{list.0.name}}</a>
+                    <ul class="list-group" id={{list.0.name}} style="display:none"> 
+                        {% for data in list %}
+                            {% if data.key != 'title' %}
+                            <li class="list-group-item"><a href={{data.path}}>{{ data.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <br>
+                    <br>
+                    {% endfor %}
+                </div>
+                <div style="height: 875px;">
+                    {% block content %} {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function showdiv($id, $title) {
+				document.getElementById($title).style.display = "block";
+				document.getElementById($id).innerHTML = "-" + $title;
+                var hrefFunc =  "javascript:hidediv('" + $id + "','" + $title + "')";
+				document.getElementById($id).href = hrefFunc;
+			}
+
+            function hidediv($id, $title) {
+				document.getElementById($title).style.display = "none";
+				document.getElementById($id).innerHTML = "+" + $title;
+                var hrefFunc =  "javascript:showdiv('" + $id + "','" + $title + "')";
+				document.getElementById($id).href = hrefFunc;
+			}
+
+            $('#accButton').click(function () {
+                window.location.href = '/account_show/'
+            }) 
+
+            $('#usrButton').click(function () {
+                window.location.href = '/user_show/'
+            }) 
+
+            $('#svrButton').click(function () {
+                window.location.href = '/server_showcfg/'
+            }) 
+
+            $('#mailButton').click(function () {
+                window.location.href = '/mail_show/'
+            }) 
+
+            $('#dataButton').click(function () {
+                window.location.href = '/data_show/'
+            }) 
+
+            $("#startDate").focus(function () {
+                var endDate = $("#endDate").val();
+                console.log(endDate)
+                if (endDate != "") {
+                    WdatePicker({dateFmt:'yyyy-MM-dd', maxDate:endDate});
+                } else {
+                    WdatePicker({dateFmt:'yyyy-MM-dd'});
+                }
+            });
+
+            $("#endDate").focus(function () {
+                var startDate = $("#startDate").val();
+                if (startDate != "") {
+                    WdatePicker({dateFmt:'yyyy-MM-dd', minDate:startDate});
+                } else {
+                    WdatePicker({dateFmt:'yyyy-MM-dd'});
+                }
+            });
+        </script>
+
+    </body>
+</html>

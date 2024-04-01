@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MainLogic">
+      <UniqueIdentifier>{d6c2cd97-f434-469a-8fec-94f8ae85acd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{a7c90f48-993a-47d2-8442-54150288a625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{8235861c-118c-4843-ba3b-32f4c7a560b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{0e74fc51-1d8f-4196-8403-fd78314ef6a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netface">
+      <UniqueIdentifier>{618a19a6-0c27-449a-98c5-47edb65a5b8a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DBServer.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CDBInstance.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="CDBUser.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="CDBUserManager.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="CServerNetface.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameSession.cpp">
+      <Filter>Netface</Filter>
+    </ClCompile>
+    <ClCompile Include="CDBLogic.cpp">
+      <Filter>MainLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstConfig.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="CDBProxy.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CDBInstance.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="CDBUser.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="CDBUserManager.h">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="CServerNetface.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameSession.h">
+      <Filter>Netface</Filter>
+    </ClInclude>
+    <ClInclude Include="CDBLogic.h">
+      <Filter>MainLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstConfig.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CDBProxy.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

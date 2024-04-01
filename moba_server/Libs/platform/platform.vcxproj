@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{469cab85-c6bb-4b95-bd28-c0325660cb19}</ProjectGuid>
+    <RootNamespace>platform</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Bin\Libs\$(TargetFileName)</OutDir>
+    <IntDir>..\..\BuildBin\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Bin\Libs\win64\$(TargetFileName)</OutDir>
+    <IntDir>..\..\BuildBin\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;WIN32;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;MYSQLPP_NO_DLL;BSONCXX_POLY_USE_MNMLSTC</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>../3rdlibs/zookeeper/win64;../3rdlibs/libevent/win64/include;../3rdlibs/libevent/win64/WIN32-Code/nmake;../3rdlibs/mongo/win64/mongocxx/v_noabi;../3rdlibs/mysqlpp/win64;../3rdlibs/mysql/win64;../3rdlibs/curl/win64;../3rdlibs/boost/win64;../tinyxml;../network;../3rdlibs/mongo/win64/libmongoc-1.0;../3rdlibs/mongo/win64/bsoncxx/v_noabi;../3rdlibs/libevent/win64/compat/sys;../3rdlibs/mongo/win64/libbson-1.0;../mysql</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>..\..\Bin\Libs\win64\$(TargetFileName)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\network\id_alloctor.h" />
+    <ClInclude Include="db_mgr.h" />
+    <ClInclude Include="db_struct.h" />
+    <ClInclude Include="http_client.h" />
+    <ClInclude Include="http_mgr.h" />
+    <ClInclude Include="http_param.h" />
+    <ClInclude Include="http_request.h" />
+    <ClInclude Include="ikcp.h" />
+    <ClInclude Include="map_pool.h" />
+    <ClInclude Include="map_pools.h" />
+    <ClInclude Include="mongo_db.h" />
+    <ClInclude Include="mongo_mgr.h" />
+    <ClInclude Include="mysql_db.h" />
+    <ClInclude Include="mysql_mgr.h" />
+    <ClInclude Include="server_pool.h" />
+    <ClInclude Include="util_load_base.h" />
+    <ClInclude Include="util_malloc.h" />
+    <ClInclude Include="util_arg_opt.h" />
+    <ClInclude Include="call_stack.h" />
+    <ClInclude Include="coredump_x.h" />
+    <ClInclude Include="coutclr.h" />
+    <ClInclude Include="db_thread.h" />
+    <ClInclude Include="record_associate_container.h" />
+    <ClInclude Include="dtype.h" />
+    <ClInclude Include="en_de_code.h" />
+    <ClInclude Include="func_proc.h" />
+    <ClInclude Include="util_string.h" />
+    <ClInclude Include="log_mgr.h" />
+    <ClInclude Include="rank_map.h" />
+    <ClInclude Include="util_file.h" />
+    <ClInclude Include="mongo_base.h" />
+    <ClInclude Include="util_strop.h" />
+    <ClInclude Include="util_time.h" />
+    <ClInclude Include="global_define.h" />
+    <ClInclude Include="lru_hashmap.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="objects_pool.h" />
+    <ClInclude Include="skiplist.h" />
+    <ClInclude Include="util_spthread.h" />
+    <ClInclude Include="util_random.h" />
+    <ClInclude Include="win_get_opt.h" />
+    <ClInclude Include="singleton.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CBattleCommon.h" />
+    <ClCompile Include="db_mgr.cpp" />
+    <ClCompile Include="db_struct.cpp" />
+    <ClCompile Include="http_client.cpp" />
+    <ClCompile Include="http_mgr.cpp" />
+    <ClCompile Include="http_param.cpp" />
+    <ClCompile Include="http_request.cpp" />
+    <ClCompile Include="ikcp.cpp" />
+    <ClCompile Include="mongo_db.cpp" />
+    <ClCompile Include="mongo_mgr.cpp" />
+    <ClCompile Include="mysql_db.cpp" />
+    <ClCompile Include="mysql_mgr.cpp" />
+    <ClCompile Include="util_arg_opt.cpp" />
+    <ClCompile Include="call_stack.cpp" />
+    <ClCompile Include="coredump_x.cpp" />
+    <ClCompile Include="coutclr.cpp" />
+    <ClCompile Include="en_de_code.cpp" />
+    <ClCompile Include="func_proc.cpp" />
+    <ClCompile Include="util_file.cpp" />
+    <ClCompile Include="mongo_base.cpp" />
+    <ClCompile Include="util_load_base.cpp" />
+    <ClCompile Include="util_strop.cpp" />
+    <ClCompile Include="util_time.cpp" />
+    <ClCompile Include="log_mgr.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="util_string.cpp" />
+    <ClCompile Include="util_random.cpp" />
+    <ClCompile Include="win_get_opt.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
