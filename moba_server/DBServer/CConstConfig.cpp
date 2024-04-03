@@ -12,8 +12,7 @@ bool CConstConfig::Init()
 	InitSheet("common_config", std::bind(&CConstConfig::AddCommonCfg, this));
 	InitSheet("db_config", std::bind(&CConstConfig::AddDBCfg, this));
 	InitSheet("mongo_config", std::bind(&CConstConfig::AddMongoCfg, this));
-	InitSheet("mysql_config", std::bind(&CConstConfig::AddMysqlCfg, this));
-
+	
 	return LoadCfgFromXml(CONST_CONFIG);
 }
 

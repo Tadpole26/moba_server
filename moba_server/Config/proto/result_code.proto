@@ -8,7 +8,7 @@ enum ResultCode
 	
 	Code_Login_RoleNameCollision		= 1001;		//创建角色重名
 	Code_Login_NoUser					= 1002;		//没有角色数据
-	Code_Login_RoleInGame				= 1003;		//角色已经再游戏中
+	Code_Login_UserInGame				= 1003;		//角色已经再游戏中
 	Code_Login_CheckOften				= 1004;		//查看玩家数据太频繁
 	Code_Login_NoInGame					= 1005;		//玩家当前不在线
 	Code_Login_NameTooLong				= 1006;		//名字过长

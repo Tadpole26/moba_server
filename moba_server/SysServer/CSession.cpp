@@ -103,7 +103,7 @@ void CSession::OnRecordOnlineNum(const tagMsgHead* pMsgHead)
 	Msg_ServerInner_GS_RecordOnline oRecord;
 	PARSE_PTL_HEAD(oRecord, pMsgHead);
 
-	SYS_HTTP_INS->NotifyOnlineNum(oRecord.uionlinenum()
+	gSysHttpFunc->NotifyOnlineNum(oRecord.uionlinenum()
 		, oRecord.uiserverid(), oRecord.uiwaitnum()
 		, oRecord.uiareano(), oRecord.strip()
 		, oRecord.uiport(), oRecord.uimaxnum(), oRecord.strversion());
@@ -114,7 +114,7 @@ void CSession::OnClearOnlineNum(const tagMsgHead* pMsgHead)
 	Msg_ServerInner_GS_ClearOnline oRecord;
 	PARSE_PTL_HEAD(oRecord, pMsgHead);
 
-	SYS_HTTP_INS->NotifyClearOnlineNum(oRecord.uiserverid(), oRecord.uiareano());
+	gSysHttpFunc->NotifyClearOnlineNum(oRecord.uiserverid(), oRecord.uiareano());
 }
 
 void CSession::OnNotifyOnline(const tagMsgHead* pMsgHead)
@@ -122,7 +122,7 @@ void CSession::OnNotifyOnline(const tagMsgHead* pMsgHead)
 	Msg_ServerInner_GS_NotifyOnline oRecord;
 	PARSE_PTL_HEAD(oRecord, pMsgHead);
 
-	SYS_HTTP_INS->NotifyOnline(oRecord.llplayerid(), oRecord.uiserverid()
+	gSysHttpFunc->NotifyOnline(oRecord.llplayerid(), oRecord.uiserverid()
 		, SYS_LOGIC_INS->m_oConstCfg.m_uiGroupId);
 }
 
@@ -132,7 +132,7 @@ void CSession::OnNotifyLogout(const tagMsgHead* pMsgHead)
 	PARSE_PTL_HEAD(oRecord, pMsgHead);
 
 	SYS_PLAYER_MGR_INS->DelUser(oRecord.llplayerid());
-	SYS_HTTP_INS->NotifyLogout(oRecord.llplayerid(), oRecord.uiserverid()
+	gSysHttpFunc->NotifyLogout(oRecord.llplayerid(), oRecord.uiserverid()
 		, SYS_LOGIC_INS->m_oConstCfg.m_uiGroupId);
 }
 
@@ -401,7 +401,7 @@ void CSession::OnWMsg(const std::string& strClient
 
 	std::string strErr = ss.str();
 	Log_Custom("msg", "%s", strErr.c_str());
-	SYS_HTTP_INS->SendChatMsg(strErr);
+	gSysHttpFunc->SendChatMsg(strErr);
 
 }
 

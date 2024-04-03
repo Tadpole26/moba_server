@@ -93,11 +93,11 @@ bool CSysLogic::Init()
 	assert(m_pClientLIF);
 	m_pLogic->reg_interface_listen(m_pClientLIF);
 
-	if (!SYS_HTTP_INS->Init(m_oConstCfg.m_strApiAddr, m_pLogic->evthread()->Base()))
-	{
-		Log_Error(" http init error! url:%s", m_oConstCfg.m_strApiAddr.c_str());
-		return false;
-	}
+	//if (!gSysHttpFunc->Init(m_oConstCfg.m_strApiAddr, m_pLogic->evthread()->Base()))
+	//{
+	//	Log_Error(" http init error! url:%s", m_oConstCfg.m_strApiAddr.c_str());
+	//	return false;
+	//}
 
 	regfn_io_recv_msg(my_io_recv_msg);
 	regfn_io_send_msg(my_io_send_msg);
@@ -135,7 +135,7 @@ void CSysLogic::Stop()
 void CSysLogic::OnTimer(uint32 dwTm)
 {
 	SetCurrTime();
-	SYS_HTTP_INS->OnTimer();
+	gSysHttpFunc->OnTimer();
 }
 
 bool CSysLogic::Launch()
@@ -147,7 +147,7 @@ bool CSysLogic::Launch()
 		return false;
 	}
 	std::string strLocalIp = get_local_ip();
-	Log_Custom("start", "local_id:%s", strLocalIp.c_str());
+	Log_Custom("start", "local ip:%s", strLocalIp.c_str());
 	bool bRet = Run();
 	Fini();
 	return bRet;

@@ -1,8 +1,8 @@
 #include "CGameNetface.h"
-#include "../protocol/msg_module_serverinner.pb.h"
-#include "../protocol/msg_module_servercommon.pb.h"
-#include "../protocol/msg_module_login.pb.h"
-#include "../protocol/server_common.pb.h"
+#include "msg_module_serverinner.pb.h"
+#include "msg_module_servercommon.pb.h"
+#include "msg_module_login.pb.h"
+#include "server_common.pb.h"
 #include "util_time.h"
 #include "CGateLogic.h"
 #include "global_define.h"
@@ -133,7 +133,7 @@ void CGameNetface::OnAccountLoginRet(const tagMsgHead* pNetMsgHead)
 	ProtoMsg::Msg_Login_VerifyAccount_Rsp oVerifyRsp;
 	oVerifyRsp.set_lluserid(oLoginRsp.lluserid());
 	oVerifyRsp.set_strusername(pUser->m_strAccName);
-	oVerifyRsp.set_iflag(oLoginRsp.iflag());
+	oVerifyRsp.set_iflag(oLoginRsp.eflag());
 	oVerifyRsp.set_uigameid(pUser->m_uiGameId);
 	oVerifyRsp.set_llservertime(GetCurrTime());
 	oVerifyRsp.set_itimezone(GetTimeZone());
@@ -143,10 +143,10 @@ void CGameNetface::OnAccountLoginRet(const tagMsgHead* pNetMsgHead)
 	oVerifyRsp.set_uimsgrand(pUser->m_uiMsgRand);
 
 	pUser->SendToClient(&oVerifyRsp, MsgModule::Login,
-		ProtoMsg::MsgModule_Login::Msg_Login_VerifyAccount_Rsp, oLoginRsp.uiseqid(),
-		(ProtoMsg::ResultCode)oLoginRsp.iflag());
+		ProtoMsg::MsgModule_Login::Msg_Login_VerifyAccount_Rsp, oLoginRsp.iseqid(),
+		(ProtoMsg::ResultCode)oLoginRsp.eflag());
 
-	if (ResultCode::Code_Common_Success == oLoginRsp.iflag())
+	if (ResultCode::Code_Common_Success == oLoginRsp.eflag())
 	{
 		CPlayerProxy::NotifyPlayerOnline(pUser);
 		gGateLogic->m_oUserMgr.PushThreadConn(pUser);
@@ -159,7 +159,7 @@ void CGameNetface::OnAccountLoginRet(const tagMsgHead* pNetMsgHead)
 	{
 		Log_Custom("enter", "user error name=%s, id=%lld, ms=%lld, reuslt=%d", 
 			pUser->m_strAccName.c_str(), oLoginRsp.lluserid(),
-			pUser->m_oBeginTime.Ms(), oLoginRsp.iflag());
+			pUser->m_oBeginTime.Ms(), oLoginRsp.eflag());
 	}
 	pUser->m_oBeginTime.ResetEnd();
 }
@@ -169,43 +169,43 @@ void CGameNetface::OnCreateRoleRet(const tagMsgHead* pNetMsgHead)
 	Msg_ServerInner_GG_Create_Rsp oSysCreateRsp;
 	PARSE_PTL_HEAD(oSysCreateRsp, pNetMsgHead);
 
-	CUser* pUser = gGateLogic->m_oUserMgr.GetInGamePlayer(oSysCreateRsp.llplayerid());
+	CUser* pUser = gGateLogic->m_oUserMgr.GetInGamePlayer(oSysCreateRsp.lluserid());
 	if (pUser == nullptr)
-		pUser = gGateLogic->m_oUserMgr.AddInGamePlayer(oSysCreateRsp.llplayerid());
+		pUser = gGateLogic->m_oUserMgr.AddInGamePlayer(oSysCreateRsp.lluserid());
 
 	if (!pUser)
 	{
-		Log_Error("Add in game player failed! account id:lld", oSysCreateRsp.llplayerid());
+		Log_Error("Add in game player failed! account id:lld", oSysCreateRsp.lluserid());
 		return;
 	}
 
 	Msg_Login_CreateUser_Rsp oCreateRsp;
-	oCreateRsp.set_lluserid(oSysCreateRsp.llplayerid());
-	oCreateRsp.set_strusername(oSysCreateRsp.strplayername());
-	oCreateRsp.set_uilevel(oSysCreateRsp.uilevel());
+	oCreateRsp.set_lluserid(oSysCreateRsp.lluserid());
+	oCreateRsp.set_strusername(oSysCreateRsp.strusername());
+	oCreateRsp.set_uilevel(oSysCreateRsp.ilevel());
 	oCreateRsp.set_llcreatetime(oSysCreateRsp.llcreatetime());
 	pUser->SendToClient(&oCreateRsp, MsgModule::Login, ProtoMsg::MsgModule_Login::Msg_Login_CreateUser_Rsp,
-		oSysCreateRsp.uiseqid(), (ProtoMsg::ResultCode)oSysCreateRsp.iretcode());
+		oSysCreateRsp.iseqid(), (ProtoMsg::ResultCode)oSysCreateRsp.ecode());
 
-	if (ResultCode::Code_Common_Success == oSysCreateRsp.iretcode())
+	if (ResultCode::Code_Common_Success == oSysCreateRsp.ecode())
 	{
 		gGateLogic->m_oUserMgr.PushThreadConn(pUser);
 
 		CPlayerProxy::NotifyPlayerOnline(pUser);
-		pUser->m_llUid = oSysCreateRsp.llplayerid();
+		pUser->m_llUid = oSysCreateRsp.lluserid();
 	}
 	else
 	{
-		if (oSysCreateRsp.iretcode() == Code_Login_RoleNameCollision)
+		if (oSysCreateRsp.ecode() == Code_Login_RoleNameCollision)
 		{
 			Log_Warning("accid:%lld, rolename:%s, error:%d",
 				pUser->m_llUid,
 				pUser->m_strCreateName.c_str(),
-				oSysCreateRsp.iretcode());
+				oSysCreateRsp.ecode());
 		}
 		else
 		{
-			Log_Error("addid:%lld, error:%d", pUser->m_llUid, oSysCreateRsp.iretcode());
+			Log_Error("addid:%lld, error:%d", pUser->m_llUid, oSysCreateRsp.ecode());
 		}
 	}
 }

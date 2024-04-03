@@ -1,5 +1,6 @@
 #include "CDBProxy.h"
 #include "CDBInstance.h"
+#include "CDBUser.h"
 
 CDBProxy::CDBProxy()
 {
@@ -17,6 +18,17 @@ bool CDBProxy::Init()
 
 bool CDBProxy::InitUser(CDBUser* pUser)
 {
+	return true;
+}
+
+bool CDBProxy::InitUser(sDBRet& oRet, CDBUser* pUser)
+{
+	//在CheckUserBase中已经加载,所以可以直接使用,无需再次LOAD
+	ERROR_LOG_EXIT0(CBaseInfoDBPkg::ReadDBBaseInfo(oRet.Ret_Vec(o_db_baseinfo::tb_name), pUser));
+	return true;
+
+Exit0:
+	return false;
 }
 
 bool CDBProxy::LoadUserDataFromDB(int64_t llUserId, int& iRes)

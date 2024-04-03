@@ -33,7 +33,7 @@ const char descriptor_table_protodef_result_5fcode_2eproto[] PROTOBUF_SECTION_VA
   "Code\022\027\n\023Code_Common_Success\020\000\022\027\n\023Code_Co"
   "mmon_Failure\020\001\022!\n\034Code_Login_RoleNameCol"
   "lision\020\351\007\022\026\n\021Code_Login_NoUser\020\352\007\022\032\n\025Cod"
-  "e_Login_RoleInGame\020\353\007\022\032\n\025Code_Login_Chec"
+  "e_Login_UserInGame\020\353\007\022\032\n\025Code_Login_Chec"
   "kOften\020\354\007\022\030\n\023Code_Login_NoInGame\020\355\007\022\033\n\026C"
   "ode_Login_NameTooLong\020\356\007\022\034\n\027Code_Login_N"
   "ameNotRight\020\357\007\022\035\n\030Code_Login_DeviceNotSa"

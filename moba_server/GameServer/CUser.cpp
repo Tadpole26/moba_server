@@ -28,6 +28,13 @@ void CUser::SetUserData(const ProtoMsg::user_pb_data_t& oUserPbData)
 	m_oBaseInfoPkg.ParseBaseInfoFromDB(this, oUserPbData);
 }
 
+bool CUser::SetNewUserData()
+{
+	m_oBaseInfoPkg.SetOwnerUser(this);
+
+	return true;
+}
+
 void CUser::EnterGame(bool bRelogin)
 {
 }
@@ -102,9 +109,25 @@ void CUser::SendCreateRsp(ResultCode eCode)
 	gGameLogic->m_pGateSession->Send_Msg(&oCreateRsp, MsgModule_ServerInner::Msg_ServerInner_GG_Create_Rsp, ServerInner);
 }
 
-bool CUser::SendGetDBUserInfoReq()
+bool CUser::SendGetUserInfoToDB()
 {
 	Msg_ServerDB_GD_GetUserInfo_Req oGetReq;
 	oGetReq.set_lluserid(GetUserId());
-	return true;
+	return gGameLogic->m_pDBNetFace->Send_Msg(&oGetReq, MsgModule_ServerDB::Msg_ServerDB_GD_GetUserInfo_Req, ServerDB);
+
+}
+
+bool CUser::SendCreateUserToDB()
+{
+	Msg_ServerDB_GD_CreateUser_Req oCreateReq;
+	oCreateReq.set_lluserid(GetUserId());
+
+	ServerDB_BaseInfo* pUserBaseInfo = oCreateReq.mutable_ouserinfo();
+	if (!pUserBaseInfo) return false;
+	pUserBaseInfo->set_lluserid(GetUserId());
+	pUserBaseInfo->set_straccount(GetAccount());
+	pUserBaseInfo->set_iuserlevel(GetUserLevel());
+	pUserBaseInfo->set_igender(GetUserGender());
+
+	return gGameLogic->m_pDBNetFace->Send_Msg(&oCreateReq, MsgModule_ServerDB::Msg_ServerDB_GD_CreateUser_Req, ServerDB);
 }

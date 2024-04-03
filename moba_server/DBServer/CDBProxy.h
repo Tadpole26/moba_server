@@ -10,6 +10,7 @@ public:
 
 	bool Init();
 	bool InitUser(CDBUser* pUser);
+	bool InitUser(sDBRet& oRet, CDBUser* pUser);
 	bool LoadUserDataFromDB(int64_t llUserId, int& iRes);
 
 private:

@@ -41,6 +41,9 @@ void CGameSession::handle_msg(const tagMsgHead* pNetMsg)
 	case MsgModule_ServerDB::Msg_ServerDB_GD_CreateUser_Req:
 		OnCreateUser(pBuf, uiLen);
 		break;
+	case MsgModule_ServerDB::Msg_ServerDB_GD_UpdateBaseInfo:
+		CBaseInfoDBPkg::OnUpdateBaseInfo(pBuf, uiLen);
+		break;
 	default:
 		Log_Error("cmd:%u not found!", pNetMsg->uiCmdId);
 		break;
@@ -52,6 +55,7 @@ bool SetPbFromUser(CDBUser* pUser, buff_data_t* pBuffData)
 	if (pUser == nullptr || pBuffData == nullptr) return false;
 
 	user_pb_data_t oUserPbData;
+	pUser->m_oBaseInfoPkg.SetBaseInfo(oUserPbData);
 
 	std::string strSrc;
 	std::string* pStrByte = pBuffData->mutable_strbuffdata();
@@ -68,7 +72,7 @@ bool SetPbFromUser(CDBUser* pUser, buff_data_t* pBuffData)
 	if (uiMsgLen < strSrc.length()) uiMsgLen = strSrc.length();
 	Log_Custom("enter", "package user:%lld, maxmsg:%u", pUser->GetUserId(), uiMsgLen);
 	*pStrByte = strSrc;
-	pBuffData->set_idatalen(strSrc.length());
+	pBuffData->set_idatalen((int)strSrc.length());
 	return true;
 }
 
@@ -100,7 +104,7 @@ void CGameSession::OnGetUserInfo(unsigned char* pMsg, size_t uiLen)
 	{
 		if (iResult == 2)			//没数据,返回客户端走创角流程
 		{
-			oGetRsp.set_ecode(ResultCode::Code_Login_NoInGame);
+			oGetRsp.set_ecode(ResultCode::Code_Login_NoUser);
 			Log_Info("no user, user id:%lld need to create", oGetReq.lluserid());
 		}
 		else if (iResult == 1)		//数据错误
@@ -134,4 +138,23 @@ void CGameSession::OnCreateUser(unsigned char* pMsg, size_t uiLen)
 	Msg_ServerDB_GD_CreateUser_Rsp oCreateRsp;
 	oCreateRsp.set_lluserid(oCreateReq.lluserid());
 	oCreateRsp.set_ecode(ResultCode::Code_Common_Success);
+
+	CDBUser* pUser = gDBUserManager->GetUser(oCreateReq.lluserid());
+	if (pUser != nullptr)
+	{
+		Log_Error("user:%lld already exist!, user nick:%s", oCreateReq.lluserid(), oCreateReq.ouserinfo().strusernick());
+		oCreateRsp.set_ecode(ResultCode::Code_Common_Failure);
+	}
+	else
+	{
+		pUser = gDBUserManager->CreateUser(oCreateReq);
+		if (pUser == nullptr)
+		{
+			//添加失败移除
+			Log_Error("create new user failed, userid:%lld", oCreateReq.lluserid());
+			oCreateRsp.set_ecode(ResultCode::Code_Common_Failure);
+		}
+	}
+	Send_Msg(&oCreateRsp, MsgModule_ServerDB::Msg_ServerDB_GD_CreateUser_Rsp, MsgModule::ServerDB);
+	Log_Info("create new user ok, userid:%lld", oCreateReq.lluserid());
 }

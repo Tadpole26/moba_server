@@ -1,7 +1,13 @@
 
 #pragma once
-#include "dtype.h"
+#include "db_struct.h"
 #include "BaseInfoStruct.h"
+namespace ProtoMsg
+{
+    class Msg_ServerDB_GD_UpdateBaseInfo;
+    class user_pb_data_t;
+}
+using namespace ProtoMsg;
 
 struct o_db_baseinfo
 {
@@ -15,20 +21,21 @@ struct o_db_baseinfo
     static const char* create_time;
     static const char* login_time;
     static const char* logout_time;
-}
+};
 
 class CDBUser;
 class CBaseInfoDBPkg
 {
 public:
-    static void OnUpdateBaseInfo(unsigned char* pMsg, size uiLen);
+    static void OnUpdateBaseInfo(unsigned char* pMsg, size_t uiLen);
 
     static bool ReadDBBaseInfo(sDBSecRet& vecMap, CDBUser* pUser);
 
-    void GetBaseInfo(DBGS_UserData& oData);
-    stBaseInfo& GetBaseInfoInfo() { return m_oBaseInfo; }
+    void SetBaseInfo(user_pb_data_t& oData);
+    user_base_info_t& GetBaseInfo() { return m_oBaseInfo; }
 private:
-    bool UpdateBaseInfo(Msg_DBGS_UpdateBaseInfo& oUpdate);
-    bool AddOrUpdateDBBaseInfo(const Msg_DBGS_UpdateBaseInfo& oUpdate);
-    stBaseInfo m_oBaseInfo;
+    bool UpdateBaseInfo(Msg_ServerDB_GD_UpdateBaseInfo& oUpdate);
+    bool AddOrUpdateDBBaseInfo(const Msg_ServerDB_GD_UpdateBaseInfo& oUpdate);
+
+    user_base_info_t m_oBaseInfo;
 };

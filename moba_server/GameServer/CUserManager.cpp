@@ -67,7 +67,7 @@ void CUserManager::OnTimer()
 CUser* CUserManager::GetCheckingUser(int64_t llUserId)
 {
 	auto iter = m_mapCheckingByUserId.find(llUserId);
-	if (iter == m_mapCheckingByUserId.end())
+	if (iter != m_mapCheckingByUserId.end())
 		return iter->second;
 	return nullptr;
 }
@@ -75,7 +75,7 @@ CUser* CUserManager::GetCheckingUser(int64_t llUserId)
 CUser* CUserManager::CreateCheckingUser(int64_t llUserId)
 {
 	auto iter = m_mapCheckingByUserId.find(llUserId);
-	if (iter == m_mapCheckingByUserId.end())
+	if (iter != m_mapCheckingByUserId.end())
 		return iter->second;
 
 	CUser* pUser = m_pUserPool->Alloc();
@@ -104,7 +104,7 @@ void CUserManager::DelCheckingUser(int64_t llUserId, bool bRealFree)
 CUser* CUserManager::GetCheckedUser(int64_t llUserId)
 {
 	auto iter = m_mapCheckedByUserId.find(llUserId);
-	if (iter == m_mapCheckedByUserId.end())
+	if (iter != m_mapCheckedByUserId.end())
 		return iter->second;
 	return nullptr;
 }
@@ -175,7 +175,7 @@ void CUserManager::DelCheckedUser(int64_t llUserId, bool bRealFree)
 CUser* CUserManager::GetOutUser(int64_t llUserId)
 {
 	auto iter = m_mapOutByUserId.find(llUserId);
-	if (iter == m_mapOutByUserId.end())
+	if (iter != m_mapOutByUserId.end())
 		return iter->second;
 	return nullptr;
 }

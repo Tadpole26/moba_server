@@ -135,7 +135,6 @@ class session(object):
 		else :
 			self.rspPb.ParseFromString(msg[23:])
 			self.pwarning(self.rspPb)
-			self.AwardItem()
 
 
 sess = session(1, 10004, 1)	# plat_id uid, gourp_id

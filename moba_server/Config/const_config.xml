@@ -58,7 +58,7 @@
 		<host>vcs.wozip.com:27017</host>
 		<user>admin</user>
 		<password>123456</password>
-		<game_db>u_group</game_db>
+		<game_db>db_group</game_db>
 		<mail_db>db_global_mail</mail_db>
 		<auth>MONGODB-CR</auth>
 	</mongo_config>

@@ -29,4 +29,4 @@ private:
 	static CMsgQueue _queue;
 };
 
-#define SYS_HTTP_INS Singleton<CSysHttpFunc>::getInstance()
+#define gSysHttpFunc Singleton<CSysHttpFunc>::getInstance()

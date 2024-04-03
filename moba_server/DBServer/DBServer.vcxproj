@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBaseInfoDBPkg.cpp" />
     <ClCompile Include="CConstConfig.cpp" />
     <ClCompile Include="CDBInstance.cpp" />
     <ClCompile Include="CDBLogic.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="DBServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBaseInfoDBPkg.h" />
     <ClInclude Include="CConstConfig.h" />
     <ClInclude Include="CDBInstance.h" />
     <ClInclude Include="CDBLogic.h" />
@@ -91,6 +93,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\Bin\$(TargetFileName)</OutDir>
+    <IntDir>..\BuildBin\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -125,11 +131,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;STATIC_LIBMONGOCLIENT;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;USE_STATIC_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../Libs/serialize;../Libs/tinyxml;../Libs/protocol;../Libs/3rdlibs/mongo/win64/libbson-1.0;../Libs/3rdlibs/mongo/win64/libmongoc-1.0;../Libs/3rdlibs/zookeeper/win64;../Libs/network;../Libs/3rdlibs/libevent/win64/WIN32-Code/nmake;../Libs/3rdlibs/protobuf/win64;../Libs/3rdlibs/mongo/win64/mongocxx/v_noabi;../Libs/3rdlibs/mongo/win64/bsoncxx/v_noabi;../Libs/3rdlibs/boost/win64;../Libs/3rdlibs/libevent/win64/include;../Libs/3rdlibs/json/win64;../Libs/platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Libs/serialize;../Libs/tinyxml;../Libs/protocol;../Libs/3rdlibs/mongo/win64/libbson-1.0;../Libs/3rdlibs/mongo/win64/libmongoc-1.0;../Libs/3rdlibs/zookeeper/win64;../Libs/network;../Libs/3rdlibs/libevent/win64/WIN32-Code/nmake;../Libs/3rdlibs/protobuf/win64;../Libs/3rdlibs/mongo/win64/mongocxx/v_noabi;../Libs/3rdlibs/mongo/win64/bsoncxx/v_noabi;../Libs/3rdlibs/boost/win64;../Libs/3rdlibs/libevent/win64/include;../Libs/3rdlibs/json/win64;../Libs/platform;../Libs/utility;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\Bin\Libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libprotobufd.lib;event.lib;event_core.lib;event_extra.lib;network_d.lib;platform_d.lib;serialize_d.lib;protocol_d.lib;tinyxml_d.lib;mongocxx.lib;mongoc-1.0.lib;bson-1.0.lib;bsoncxx.lib;hashtable.lib;zookeeper.lib;ws2_32.lib;jsoncpp_static.lib;Dbghelp.lib;utility_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

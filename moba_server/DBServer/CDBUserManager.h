@@ -4,6 +4,10 @@
 #include "objects_pool.h"
 #include "CDBUser.h"
 #include "lru_hashmap.h"
+namespace ProtoMsg
+{
+	class Msg_ServerDB_GD_CreateUser_Req;
+}
 
 class CDBUserManager
 {
@@ -15,6 +19,8 @@ public:
 	void InInit();
 	void OnTimer(int iTime);
 
+	//创建玩家
+	CDBUser* CreateUser(const ProtoMsg::Msg_ServerDB_GD_CreateUser_Req& oCreateReq);
 	//获取玩家数据
 	CDBUser* GetUser(int64_t llUserId);
 	//获取在线玩家数据

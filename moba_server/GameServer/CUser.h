@@ -23,10 +23,16 @@ public:
     void LeaveGame(bool bSelfLeave = true);
 
 public:
-    int64_t GetUserId() { return 0; }
+    int64_t GetUserId() { return m_oBaseInfoPkg.GetUserId(); }
+    void SetUserId(int64_t llVal) { m_oBaseInfoPkg.SetUserId(llVal); }
 
-    std::string GetUserNick() { return m_strDevId; }
-    std::string GetAccount() { return m_strDevId; }
+    std::string GetUserNick() { return m_oBaseInfoPkg.GetUserNick(); }
+    void SetUserNick(const std::string& strValue) { m_oBaseInfoPkg.SetUserNick(strValue); }
+
+    std::string GetAccount() { return m_oBaseInfoPkg.GetAccount(); }
+
+    int GetUserGender() { return m_oBaseInfoPkg.GetGender(); }
+    void SetuserGender(int iValue) { m_oBaseInfoPkg.SetGender(iValue); }
 
     int GetUserLevel() { return m_iSequence; }
     int GetCreateTime() { return m_iSequence; }
@@ -50,17 +56,19 @@ public:
     void SetCreate(bool bValue) { m_bCreate = bValue; }
 
     void SetUserData(const ProtoMsg::user_pb_data_t& oUserPbData);
+    bool SetNewUserData();
 
     bool SendMsgClient(google::protobuf::Message* pMsg, uint8_t usModuleId, uint32 uiCmd,
             ProtoMsg::ResultCode eCode = ResultCode::Code_Common_Success, bool bNotify = false);
     bool SendMsgClient(const std::string& strMsg, uint8_t usModuleId, uint32 uiCmd,
         ProtoMsg::ResultCode eCode = ResultCode::Code_Common_Success, bool bNotify = false);
 
-    void SendKickUserNotify(ProtoMsg::ResultCode eCode = Code_Login_RoleInGame);
+    void SendKickUserNotify(ProtoMsg::ResultCode eCode = Code_Login_UserInGame);
     void SendLoginRsp(ProtoMsg::ResultCode eCode = Code_Common_Success);
     void SendCreateRsp(ProtoMsg::ResultCode eCode = Code_Common_Success);
 
-    bool SendGetDBUserInfoReq();
+    bool SendGetUserInfoToDB();
+    bool SendCreateUserToDB();
 
     CBaseInfoPackage& GetBaseInfoPkg() { return m_oBaseInfoPkg; }
 

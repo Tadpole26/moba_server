@@ -2,6 +2,7 @@
 #include "global_define.h"
 #include "log_mgr.h"
 #include "CDBProxy.h"
+#include "msg_module_serverdb.pb.h"
 
 CDBUserManager::CDBUserManager()
 {
@@ -41,6 +42,22 @@ void CDBUserManager::OnTimer(int iTime)
 	}
 }
 
+CDBUser* CDBUserManager::CreateUser(const  ProtoMsg::Msg_ServerDB_GD_CreateUser_Req& oCreateReq)
+{
+	CDBUser* pUser = m_pUserPool->Alloc();
+	if (pUser == nullptr) return nullptr;
+
+	bool bRet = pUser->AddNewUser(oCreateReq);
+	if (!bRet)
+	{
+		m_pUserPool->Free(pUser);
+		return nullptr;
+	}
+
+	m_mapOnUser.insert(std::make_pair(oCreateReq.lluserid(), pUser));
+	return pUser;
+}
+
 CDBUser* CDBUserManager::GetUser(int64_t llUserId)
 {
 	CDBUser* pUser = nullptr;
@@ -49,10 +66,14 @@ CDBUser* CDBUserManager::GetUser(int64_t llUserId)
 	if (iter != m_mapOnUser.end())
 		pUser = iter->second;
 
-	if (pUser != nullptr) return pUser;
+	if (pUser != nullptr) 
+		return pUser;
+
 	auto iterFind = m_mapOffUser.Find(llUserId);
 	if (iterFind != m_mapOffUser.End())
 		return iterFind->second;
+
+	return pUser;
 }
 
 CDBUser* CDBUserManager::GetUserOn(int64_t llUserId)

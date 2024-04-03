@@ -16,6 +16,9 @@
     <Filter Include="Netface">
       <UniqueIdentifier>{618a19a6-0c27-449a-98c5-47edb65a5b8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Package">
+      <UniqueIdentifier>{5c176375-d432-4c47-aa04-caf44fff63a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DBServer.cpp">
@@ -45,6 +48,9 @@
     <ClCompile Include="CDBProxy.cpp">
       <Filter>DB</Filter>
     </ClCompile>
+    <ClCompile Include="CBaseInfoDBPkg.cpp">
+      <Filter>Package</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CDBInstance.h">
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="CDBProxy.h">
       <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="CBaseInfoDBPkg.h">
+      <Filter>Package</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

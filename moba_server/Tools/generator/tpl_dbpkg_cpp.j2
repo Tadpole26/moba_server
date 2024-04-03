@@ -13,7 +13,7 @@
 NumUInt
 {%-elif type == 'int' -%}
 NumInt
-{%-elif type == 'int64' -%}
+{%-elif type == 'int64_t' -%}
 NumLong
 {%-elif type == 'time_t' -%}
 Time
@@ -35,8 +35,13 @@ AddReq
 {%- endmacro -%}
 
 #include "{{dbpkg_file}}.h"
-#include "CDBUserMgr.h"
+#include "DBTableNameStruct.h"
+#include "CDBUserManager.h"
 #include "CDBUser.h"
+#include "msg_module_serverdb.pb.h"
+#include "CDBInstance.h"
+#include "parse_pb.h"
+#include "log_mgr.h"
 
 const char* {{db_name}}::tb_name = "{{db_name}}";
 
@@ -54,7 +59,7 @@ bool {{dbpkg_name}}::ReadDB{{col_name}}(sDBSecRet& vecMap, CDBUser* pUser)
     for (sDBMap& oValue : vecMap)
     {
         {{keyField.type}} uiId = oValue.{{gen_db_func(keyField.type)}}({{db_name}}::id);
-        {{st_name}}& stData = pUser->m_o{{col_name}}Opt.m_map{{col_name}}[uiId];
+        {{doc_name}}_t& stData = pUser->m_o{{col_name}}.m_map{{col_name}}[uiId];
         {%- for field in field_list %}
         {%- if field.m_strkey == True %}
         stData.{{field.m_strMemName}} = uiId;
@@ -71,7 +76,7 @@ bool {{dbpkg_name}}::ReadDB{{col_name}}(sDBSecRet& vecMap, CDBUser* pUser)
     if (vecMap.empty()) return true;
     sDBMap& retMap = vecMap[0];
 
-    {{st_name}}& stInfo = pUser->m_o{{col_name}}Opt.Get{{col_name}}Info();
+    {{doc_name}}_t& stInfo = pUser->m_o{{col_name}}Pkg.Get{{col_name}}();
 
     {%- for field in field_list %}
     stInfo.{{field.m_strMemName}} = retMap.{{gen_db_func(field.m_strType)}}({{db_name}}::{{field.m_strName}});
@@ -80,20 +85,20 @@ bool {{dbpkg_name}}::ReadDB{{col_name}}(sDBSecRet& vecMap, CDBUser* pUser)
 }
 {%- endif %}
 
-void {{dbpkg_name}}::OnUpdate{{col_name}}(unsigned char* pMsg, size uiLen)
+void {{dbpkg_name}}::OnUpdate{{col_name}}(unsigned char* pMsg, size_t uiLen)
 {
     assert(pMsg);
-    Msg_DBGS_Update{{col_name}} oUpdate;
+    Msg_ServerDB_GD_Update{{col_name}} oUpdate;
     PARSE_PTL(oUpdate, pMsg, uiLen);
 
-    CDBUser* pUser = gDBUserManager->GetUserIn(oUpdate.lluserid());
+    CDBUser* pUser = gDBUserManager->GetUserOn(oUpdate.lluserid());
     if (nullptr == pUser)
     {
         Log_Error("uer not exist!, uid:%lld", oUpdate.lluserid());
         return;
     }
 
-    if (!pUser->m_o{{col_name}}Opt.Update{{col_name}}(oUpdate))
+    if (!pUser->m_o{{col_name}}Pkg.Update{{col_name}}(oUpdate))
         Log_Error("uid:%lld update {{col_name}} failed!", oUpdate.lluserid());
 }
 
@@ -134,7 +139,7 @@ bool {{dbpkg_name}}::Update{{col_name}}(Msg_DBGS_Update{{col_name}}& oUpdate)
     return true;
 }
 {%- else %}
-bool {{dbpkg_name}}::Update{{col_name}}(Msg_DBGS_Update{{col_name}}& oUpdate)
+bool {{dbpkg_name}}::Update{{col_name}}(Msg_ServerDB_GD_Update{{col_name}}& oUpdate)
 {
     auto& oMsg = oUpdate.oinfo();
     {%- for field in field_list %}
@@ -147,7 +152,7 @@ bool {{dbpkg_name}}::Update{{col_name}}(Msg_DBGS_Update{{col_name}}& oUpdate)
 {%- endif %}
 
 {%- if col_type == 'list' %}
-bool {{dbpkg_name}}::AddDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+bool {{dbpkg_name}}::AddDB{{col_name}}(const Msg_ServerDB_GD_Update{{col_name}}& oUpdate)
 {
     if (oUpdate.has_oinfo())
     {
@@ -166,12 +171,12 @@ bool {{dbpkg_name}}::AddDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdat
         stRequest.{{gen_add_func(field.m-m_strType)}}({{db_name}}::{{field.m_strName}}, oMsg.{{field.m_strPbName}}());
         {%- endif %}
         {%- endfor %}
-        gDBInstace->PushGame(stRequest);
+        gDBInstance->PushGame(stRequest);
     }
     return true;
 }
 
-bool {{dbpkg_name}}::UpdateDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+bool {{dbpkg_name}}::UpdateDB{{col_name}}(const Msg_ServerDB_GD_Update{{col_name}}& oUpdate)
 {
     if (oUpdate.has_oinfo())
     {
@@ -190,12 +195,12 @@ bool {{dbpkg_name}}::UpdateDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUp
         stRequest.{{gen_add_func(field.m-m_strType)}}({{db_name}}::{{field.m_strName}}, oMsg.{{field.m_strPbName}}());
         {%- endif %}
         {%- endfor %}
-        gDBInstace->PushGame(stRequest);
+        gDBInstance->PushGame(stRequest);
     }
     return true;
 }
 
-bool {{dbpkg_name}}::DeleteOneDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+bool {{dbpkg_name}}::DeleteOneDB{{col_name}}(const Msg_ServerDB_GD_Update{{col_name}}& oUpdate)
 {
     auto& oMsg = oUpdate.oinfo();
     sDBRequest stRequest(eDBQueryType::eDB_Delete, db_game.u_player.tb_name, {{db_name}}::tb_name);
@@ -205,35 +210,37 @@ bool {{dbpkg_name}}::DeleteOneDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& 
     {%- else %}
     stRequest.AddCon({{db_name}}::id, oMsg.{{keyField.pb_name}}());
     {% endif %}
-    gDBInstace->PushGame(stRequest);
+    gDBInstance->PushGame(stRequest);
     return true;
 }
 
-bool {{dbpkg_name}}::DeleteAllDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+bool {{dbpkg_name}}::DeleteAllDB{{col_name}}(const Msg_ServerDB_GD_Update{{col_name}}& oUpdate)
 {
     sDBRequest stRequest(eDBQueryType::eDB_DropParam, db_game.u_player.tb_name);
     stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
     stRequest.AddField({{db_name}}::tb_name);
-    gDBInstace->PushGame(stRequest);
+    gDBInstance->PushGame(stRequest);
     return true;
 }
+
 {%- else %}
-bool {{dbpkg_name}}::AddOrUpdateDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate)
+
+bool {{dbpkg_name}}::AddOrUpdateDB{{col_name}}(const Msg_ServerDB_GD_Update{{col_name}}& oUpdate)
 {
     auto& oInfo = oUpdate.oinfo();
-    sDBRequest stRequest(eDB_InsertUpdate, db_game.u_player.tb_name, {{db_name}}::tb_name, tagSecTblDesc::eST_Object);
+    sDBRequest stRequest(eDB_InsertUpdate, table_name_t::user_table_name, {{db_name}}::tb_name, tagSecTblDesc::eST_Object);
 
-    stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
+    stRequest.AddCon(table_name_t::_id, oUpdate.lluserid());
     {%- for field in field_list %}
     stRequest.{{gen_add_func(field.m_strType)}}({{db_name}}::{{field.m_strName}}, oInfo.{{field.m_strPbName}}());
     {%- endfor %}
-    gDBInstace->PushGame(stRequest);
+    gDBInstance->PushGame(stRequest);
     return true;
 }
 {%- endif %}
 
 {%- if col_type == 'list' %}
-void {{dbpkg_name}}::Get{{col_name}}(DBGS_UserData& oData)
+void {{dbpkg_name}}::Set{{col_name}}(user_pb_data_t& oData)
 {
     for (auto& value : m_map{{col_name}})
     {
@@ -246,9 +253,10 @@ void {{dbpkg_name}}::Get{{col_name}}(DBGS_UserData& oData)
     }
 }
 {%- else %}
-void {{dbpkg_name}}::Get{{col_name}}(DBGS_UserData& oData)
+
+void {{dbpkg_name}}::Set{{col_name}}(user_pb_data_t& oData)
 {
-    ProtoMsg::DBGS_{{col_name}}* pMsg = oData.mutable_o{{col_lower_name}}info();
+    ProtoMsg::ServerDB_{{col_name}}* pMsg = oData.mutable_o{{col_lower_name}}();
     if (pMsg == nullptr) return;
     {%- for field in field_list %}
     pMsg->set_{{field.m_strPbName}}(m_o{{col_name}}.{{field.m_strMemName}});

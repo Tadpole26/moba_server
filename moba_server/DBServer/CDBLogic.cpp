@@ -7,6 +7,8 @@
 #include "util_file.h"
 #include "mongo_base.h"
 #include "CDBInstance.h"
+#include "CDBUserManager.h"
+#include "CDBProxy.h"
 #include <fstream>
 
 bool CDBLogic::Arg(int argc, char* argv[])
@@ -64,11 +66,23 @@ bool CDBLogic::Init()
 		return false;
 	}
 
-	//初始化连接mongo
+	//数据库初始化
 	MongoBase::initialize(m_oConstCfg.m_uiGroupId);
 	if (!gDBInstance->Init())
 	{
 		Log_Error("init mongo db instance error!!!");
+		return false;
+	}
+
+	if (!gDBProxy->Init())
+	{
+		Log_Error("init mongo db select error!!!");
+		return false;
+	}
+
+	if (!gDBUserManager->Init())
+	{
+		Log_Error("init user manager error!");
 		return false;
 	}
 
@@ -147,9 +161,15 @@ bool CDBLogic::Launch()
 		return false;
 	}
 	std::string strLocalIp = get_local_ip();
-	Log_Custom("start", "local_id:%s", strLocalIp.c_str());
+	Log_Custom("start", "local ip:%s", strLocalIp.c_str());
 	bool bRet = Run();
 	Fini();
 	return bRet;
 }
 
+void CDBLogic::OnTimer(int iTime)
+{
+	SetCurrTime();
+	gDBInstance->OnTimer();
+	gDBUserManager->OnTimer(iTime);
+}

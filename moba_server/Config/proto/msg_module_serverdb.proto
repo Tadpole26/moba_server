@@ -56,6 +56,7 @@ message Msg_ServerDB_GD_GetUserInfo_Rsp
 message Msg_ServerDB_GD_CreateUser_Req
 {
 	int64 llUserId = 1;
+	ServerDB_BaseInfo oUserInfo = 2;
 }
 
 message Msg_ServerDB_GD_CreateUser_Rsp

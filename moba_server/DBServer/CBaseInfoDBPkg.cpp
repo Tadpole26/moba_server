@@ -1,6 +1,11 @@
 #include "CBaseInfoDBPkg.h"
-#include "CDBUserMgr.h"
+#include "DBTableNameStruct.h"
+#include "CDBUserManager.h"
 #include "CDBUser.h"
+#include "msg_module_serverdb.pb.h"
+#include "CDBInstance.h"
+#include "parse_pb.h"
+#include "log_mgr.h"
 
 const char* o_db_baseinfo::tb_name = "o_db_baseinfo";
 const char* o_db_baseinfo::user_id = "user_id";
@@ -19,8 +24,8 @@ bool CBaseInfoDBPkg::ReadDBBaseInfo(sDBSecRet& vecMap, CDBUser* pUser)
     if (vecMap.empty()) return true;
     sDBMap& retMap = vecMap[0];
 
-    stBaseInfo& stInfo = pUser->m_oBaseInfoOpt.GetBaseInfoInfo();
-    stInfo.m_llUserId = retMap.(o_db_baseinfo::user_id);
+    user_base_info_t& stInfo = pUser->m_oBaseInfoPkg.GetBaseInfo();
+    stInfo.m_llUserId = retMap.NumLong(o_db_baseinfo::user_id);
     stInfo.m_strAccount = retMap.Str(o_db_baseinfo::account);
     stInfo.m_strUserNick = retMap.Str(o_db_baseinfo::user_nick);
     stInfo.m_iGender = retMap.NumInt(o_db_baseinfo::gender);
@@ -32,23 +37,23 @@ bool CBaseInfoDBPkg::ReadDBBaseInfo(sDBSecRet& vecMap, CDBUser* pUser)
     return true;
 }
 
-void CBaseInfoDBPkg::OnUpdateBaseInfo(unsigned char* pMsg, size uiLen)
+void CBaseInfoDBPkg::OnUpdateBaseInfo(unsigned char* pMsg, size_t uiLen)
 {
     assert(pMsg);
-    Msg_DBGS_UpdateBaseInfo oUpdate;
+    Msg_ServerDB_GD_UpdateBaseInfo oUpdate;
     PARSE_PTL(oUpdate, pMsg, uiLen);
 
-    CDBUser* pUser = gDBUserManager->GetUserIn(oUpdate.lluserid());
+    CDBUser* pUser = gDBUserManager->GetUserOn(oUpdate.lluserid());
     if (nullptr == pUser)
     {
         Log_Error("uer not exist!, uid:%lld", oUpdate.lluserid());
         return;
     }
 
-    if (!pUser->m_oBaseInfoOpt.UpdateBaseInfo(oUpdate))
+    if (!pUser->m_oBaseInfoPkg.UpdateBaseInfo(oUpdate))
         Log_Error("uid:%lld update BaseInfo failed!", oUpdate.lluserid());
 }
-bool CBaseInfoDBPkg::UpdateBaseInfo(Msg_DBGS_UpdateBaseInfo& oUpdate)
+bool CBaseInfoDBPkg::UpdateBaseInfo(Msg_ServerDB_GD_UpdateBaseInfo& oUpdate)
 {
     auto& oMsg = oUpdate.oinfo();
     m_oBaseInfo.m_llUserId = oMsg.lluserid();
@@ -64,12 +69,13 @@ bool CBaseInfoDBPkg::UpdateBaseInfo(Msg_DBGS_UpdateBaseInfo& oUpdate)
     AddOrUpdateDBBaseInfo(oUpdate);
     return true;
 }
-bool CBaseInfoDBPkg::AddOrUpdateDBBaseInfo(const Msg_DBGS_UpdateBaseInfo& oUpdate)
+
+bool CBaseInfoDBPkg::AddOrUpdateDBBaseInfo(const Msg_ServerDB_GD_UpdateBaseInfo& oUpdate)
 {
     auto& oInfo = oUpdate.oinfo();
-    sDBRequest stRequest(eDB_InsertUpdate, db_game.u_player.tb_name, o_db_baseinfo::tb_name, tagSecTblDesc::eST_Object);
+    sDBRequest stRequest(eDB_InsertUpdate, table_name_t::user_table_name, o_db_baseinfo::tb_name, tagSecTblDesc::eST_Object);
 
-    stRequest.AddCon(db_game.u_player._id, oUpdate.lluserid());
+    stRequest.AddCon(table_name_t::_id, oUpdate.lluserid());
     stRequest.AddReq(o_db_baseinfo::user_id, oInfo.lluserid());
     stRequest.AddReqStr(o_db_baseinfo::account, oInfo.straccount());
     stRequest.AddReqStr(o_db_baseinfo::user_nick, oInfo.strusernick());
@@ -79,12 +85,13 @@ bool CBaseInfoDBPkg::AddOrUpdateDBBaseInfo(const Msg_DBGS_UpdateBaseInfo& oUpdat
     stRequest.AddReqTime(o_db_baseinfo::create_time, oInfo.llcreatetime());
     stRequest.AddReqTime(o_db_baseinfo::login_time, oInfo.lllogintime());
     stRequest.AddReqTime(o_db_baseinfo::logout_time, oInfo.lllogouttime());
-    gDBInstace->PushGame(stRequest);
+    gDBInstance->PushGame(stRequest);
     return true;
 }
-void CBaseInfoDBPkg::GetBaseInfo(DBGS_UserData& oData)
+
+void CBaseInfoDBPkg::SetBaseInfo(user_pb_data_t& oData)
 {
-    ProtoMsg::DBGS_BaseInfo* pMsg = oData.mutable_obaseinfoinfo();
+    ProtoMsg::ServerDB_BaseInfo* pMsg = oData.mutable_obaseinfo();
     if (pMsg == nullptr) return;
     pMsg->set_lluserid(m_oBaseInfo.m_llUserId);
     pMsg->set_straccount(m_oBaseInfo.m_strAccount);

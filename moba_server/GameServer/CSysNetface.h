@@ -10,11 +10,11 @@ public:
 	virtual void trigger();
 	void SendWChatMsg(const std::string& strClient
 		, const std::string& strServer, const std::string& strMsg);
-	void ReqUniqueId(int64 llPlayerId, const std::string& strPlayerName, uint32 uiServerId);
+	void ReqUniqueId(int64_t llUserId, const std::string& strUserName, uint32 uiServerId);
+	void OnUniqueIdRsp(int64_t llUserId, const std::string strUserName, ProtoMsg::ResultCode eCode);
 	void ModifyPlayerName(int64 llPlayerId, const std::string& strPlayerName
 		, uint32 uiServerId);
-	//void UpdatePlayerInfo(CGamePlayer* pPlayer, bool bLogin);
-	//void UpdatePlayerMb(int64 llPlayerId, uint32 uiRmb, uint32 uiRecharge);
+	
 
 private:
 	virtual void handle_msg(const tagMsgHead* pNetMsg);

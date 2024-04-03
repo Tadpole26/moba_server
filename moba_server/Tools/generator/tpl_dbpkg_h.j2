@@ -8,8 +8,14 @@
 {%-endif %}
 {%- endfor %}
 #pragma once
-#include "dtype.h"
+#include "db_struct.h"
 #include "{{st_file}}.h"
+namespace ProtoMsg
+{
+    class Msg_ServerDB_GD_Update{{col_name}};
+    class user_pb_data_t;
+}
+using namespace ProtoMsg;
 
 struct {{db_name}}
 {
@@ -21,32 +27,34 @@ struct {{db_name}}
     static const char* {{field.m_strName}};
     {%- endif %}
     {%- endfor %}
-}
+};
 
 class CDBUser;
 class {{dbpkg_name}}
 {
 public:
-    static void OnUpdate{{col_name}}(unsigned char* pMsg, size uiLen);
+    static void OnUpdate{{col_name}}(unsigned char* pMsg, size_t uiLen);
 
     static bool ReadDB{{col_name}}(sDBSecRet& vecMap, CDBUser* pUser);
 
-    void Get{{col_name}}(DBGS_UserData& oData);
+    void Set{{col_name}}(user_pb_data_t& oData);
 
 {%- if col_type == 'object' %}
-    {{st_name}}& Get{{col_name}}Info() { return m_o{{col_name}}; }
+    {{doc_name}}_t& Get{{col_name}}() { return m_o{{col_name}}; }
 {%- endif %}
 private:
-    bool Update{{col_name}}(Msg_DBGS_Update{{col_name}}& oUpdate);
+    bool Update{{col_name}}(Msg_ServerDB_GD_Update{{col_name}}& oUpdate);
 
 {%- if col_type == 'list' %}
-    bool AddDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate);
-    bool UpdateDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate);
-    bool DeleteOneDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate);
-    bool DeleteAllDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate);
+    bool AddDB{{col_name}}(const MMsg_ServerDB_GD_Update{{col_name}}& oUpdate);
+    bool UpdateDB{{col_name}}(const MMsg_ServerDB_GD_Update{{col_name}}& oUpdate);
+    bool DeleteOneDB{{col_name}}(const MMsg_ServerDB_GD_Update{{col_name}}& oUpdate);
+    bool DeleteAllDB{{col_name}}(const MMsg_ServerDB_GD_Update{{col_name}}& oUpdate);
+
     std::map<{{keyField.type}}, {{st_name}}> m_map{{col_name}};
 {%- else %}
-    bool AddOrUpdateDB{{col_name}}(const Msg_DBGS_Update{{col_name}}& oUpdate);
-    {{ st_name }} m_o{{col_name}};
+    bool AddOrUpdateDB{{col_name}}(const Msg_ServerDB_GD_Update{{col_name}}& oUpdate);
+
+    {{doc_name}}_t m_o{{col_name}};
 {%- endif %}
 };

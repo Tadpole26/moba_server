@@ -135,9 +135,11 @@ void CGateSession::OnAccountEnter(uchar* pMsg, uint32 uiLen)
 	pUser = gUserManager->CreateCheckingUser(oLoginReq.lluserid());
 	if (pUser)
 	{
+		pUser->SetUserId(oLoginReq.lluserid());
 		pUser->SetLeaveTime(GetCurrTime());
 		pUser->SetClientIp(oLoginReq.strclientip());
 		pUser->SetDevId(oLoginReq.strdeviceid());
+		pUser->SendGetUserInfoToDB();
 	}
 	else
 	{
@@ -154,7 +156,7 @@ void CGateSession::OnCreatePlayer(uchar* pMsg, uint32 uiLen)
 
 	ResultCode eCode = ResultCode::Code_Common_Success;
 	CUser* pUser = gUserManager->GetCheckingUser(oCreateReq.lluserid());
-	if (pUser != nullptr)
+	if (pUser == nullptr)
 	{
 		Log_Error("can not find checking userid:%lld", oCreateReq.lluserid());
 		return;

@@ -6,6 +6,7 @@
 #include "coredump_x.h"
 #include "util_file.h"
 #include "mongo_base.h"
+#include "CUserManager.h"
 #include <fstream>
 
 bool CGameLogic::Arg(int argc, char* argv[])
@@ -63,12 +64,19 @@ bool CGameLogic::Init()
 		return false;
 	}
 	//初始化连接zk
+	/*
 	if (!m_stZkOpt.InitZookeeper(m_oConstCfg.m_strZkHost, m_oConstCfg.m_strNormalConfigPath))
 	{
 		Log_Error("init zookeeper error !!!");
 		return false;
 	}
-	
+	*/
+	if (!gUserManager->Init())
+	{
+		Log_Error("init user manager error");
+		return false;
+	}
+
 	if (is_listen_port(m_oConstCfg.m_uiGamePort))
 	{
 		Log_Error("listen port exsit %u!!!", m_oConstCfg.m_uiGamePort);
@@ -116,6 +124,7 @@ bool CGameLogic::Init()
 
 	regfn_io_recv_msg(my_io_recv_msg);
 	regfn_io_send_msg(my_io_send_msg);
+	/*
 	m_pUpdateConfigEvent = new CZkEvent(m_pLogic->evthread()->Base(), true, m_stZkOpt.m_pZooHandle, 1000, nullptr);
 	if (m_pUpdateConfigEvent == nullptr)
 	{
@@ -128,7 +137,12 @@ bool CGameLogic::Init()
 		Log_Error("zookeeper event init failed!");
 		return false;
 	}
+	*/
 
+	m_pTimerEvent = new CTimeEvent(m_pLogic->evthread()->Base(), true, 1000, std::bind(&CGameLogic::OnTimer, this, std::placeholders::_1));
+	assert(m_pTimerEvent);
+	if (!m_pTimerEvent->init())
+		return false;
 	Log_Info("success platid:%u, groupid:%u", m_oConstCfg.m_uiPlatId, m_oConstCfg.m_uiGroupId);
 	return true;
 }
@@ -174,8 +188,14 @@ bool CGameLogic::Launch()
 		return false;
 	}
 	std::string strLocalIp = get_local_ip();
-	Log_Custom("start", "local_id:%s", strLocalIp.c_str());
+	Log_Custom("start", "local ip:%s", strLocalIp.c_str());
 	bool bRet = Run();
 	Fini();
 	return bRet;
+}
+
+void CGameLogic::OnTimer(int iSec)
+{
+	SetCurrTime();
+	gUserManager->OnTimer();
 }

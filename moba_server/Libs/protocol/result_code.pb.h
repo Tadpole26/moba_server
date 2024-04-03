@@ -52,7 +52,7 @@ enum ResultCode : int {
   Code_Common_Failure = 1,
   Code_Login_RoleNameCollision = 1001,
   Code_Login_NoUser = 1002,
-  Code_Login_RoleInGame = 1003,
+  Code_Login_UserInGame = 1003,
   Code_Login_CheckOften = 1004,
   Code_Login_NoInGame = 1005,
   Code_Login_NameTooLong = 1006,

@@ -29,7 +29,7 @@ void CClientLogic::handle_logic_msg(const tagNetMsg* pNetMsg)
 	break;
 	default:
 	{
-		CSvrLogicFace:handle_logic_msg(pNetMsg);
+		CSvrLogicFace::handle_logic_msg(pNetMsg);
 	}
 	break;
 	}

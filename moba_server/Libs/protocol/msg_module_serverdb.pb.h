@@ -1284,8 +1284,27 @@ class Msg_ServerDB_GD_CreateUser_Req final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kOUserInfoFieldNumber = 2,
     kLlUserIdFieldNumber = 1,
   };
+  // .ProtoMsg.ServerDB_BaseInfo oUserInfo = 2;
+  bool has_ouserinfo() const;
+  private:
+  bool _internal_has_ouserinfo() const;
+  public:
+  void clear_ouserinfo();
+  const ::ProtoMsg::ServerDB_BaseInfo& ouserinfo() const;
+  PROTOBUF_NODISCARD ::ProtoMsg::ServerDB_BaseInfo* release_ouserinfo();
+  ::ProtoMsg::ServerDB_BaseInfo* mutable_ouserinfo();
+  void set_allocated_ouserinfo(::ProtoMsg::ServerDB_BaseInfo* ouserinfo);
+  private:
+  const ::ProtoMsg::ServerDB_BaseInfo& _internal_ouserinfo() const;
+  ::ProtoMsg::ServerDB_BaseInfo* _internal_mutable_ouserinfo();
+  public:
+  void unsafe_arena_set_allocated_ouserinfo(
+      ::ProtoMsg::ServerDB_BaseInfo* ouserinfo);
+  ::ProtoMsg::ServerDB_BaseInfo* unsafe_arena_release_ouserinfo();
+
   // int64 llUserId = 1;
   void clear_lluserid();
   int64_t lluserid() const;
@@ -1302,6 +1321,7 @@ class Msg_ServerDB_GD_CreateUser_Req final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::ProtoMsg::ServerDB_BaseInfo* ouserinfo_;
   int64_t lluserid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_msg_5fmodule_5fserverdb_2eproto;
@@ -2266,6 +2286,96 @@ inline void Msg_ServerDB_GD_CreateUser_Req::_internal_set_lluserid(int64_t value
 inline void Msg_ServerDB_GD_CreateUser_Req::set_lluserid(int64_t value) {
   _internal_set_lluserid(value);
   // @@protoc_insertion_point(field_set:ProtoMsg.Msg_ServerDB_GD_CreateUser_Req.llUserId)
+}
+
+// .ProtoMsg.ServerDB_BaseInfo oUserInfo = 2;
+inline bool Msg_ServerDB_GD_CreateUser_Req::_internal_has_ouserinfo() const {
+  return this != internal_default_instance() && ouserinfo_ != nullptr;
+}
+inline bool Msg_ServerDB_GD_CreateUser_Req::has_ouserinfo() const {
+  return _internal_has_ouserinfo();
+}
+inline void Msg_ServerDB_GD_CreateUser_Req::clear_ouserinfo() {
+  if (GetArenaForAllocation() == nullptr && ouserinfo_ != nullptr) {
+    delete ouserinfo_;
+  }
+  ouserinfo_ = nullptr;
+}
+inline const ::ProtoMsg::ServerDB_BaseInfo& Msg_ServerDB_GD_CreateUser_Req::_internal_ouserinfo() const {
+  const ::ProtoMsg::ServerDB_BaseInfo* p = ouserinfo_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ProtoMsg::ServerDB_BaseInfo&>(
+      ::ProtoMsg::_ServerDB_BaseInfo_default_instance_);
+}
+inline const ::ProtoMsg::ServerDB_BaseInfo& Msg_ServerDB_GD_CreateUser_Req::ouserinfo() const {
+  // @@protoc_insertion_point(field_get:ProtoMsg.Msg_ServerDB_GD_CreateUser_Req.oUserInfo)
+  return _internal_ouserinfo();
+}
+inline void Msg_ServerDB_GD_CreateUser_Req::unsafe_arena_set_allocated_ouserinfo(
+    ::ProtoMsg::ServerDB_BaseInfo* ouserinfo) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ouserinfo_);
+  }
+  ouserinfo_ = ouserinfo;
+  if (ouserinfo) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ProtoMsg.Msg_ServerDB_GD_CreateUser_Req.oUserInfo)
+}
+inline ::ProtoMsg::ServerDB_BaseInfo* Msg_ServerDB_GD_CreateUser_Req::release_ouserinfo() {
+  
+  ::ProtoMsg::ServerDB_BaseInfo* temp = ouserinfo_;
+  ouserinfo_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ProtoMsg::ServerDB_BaseInfo* Msg_ServerDB_GD_CreateUser_Req::unsafe_arena_release_ouserinfo() {
+  // @@protoc_insertion_point(field_release:ProtoMsg.Msg_ServerDB_GD_CreateUser_Req.oUserInfo)
+  
+  ::ProtoMsg::ServerDB_BaseInfo* temp = ouserinfo_;
+  ouserinfo_ = nullptr;
+  return temp;
+}
+inline ::ProtoMsg::ServerDB_BaseInfo* Msg_ServerDB_GD_CreateUser_Req::_internal_mutable_ouserinfo() {
+  
+  if (ouserinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ProtoMsg::ServerDB_BaseInfo>(GetArenaForAllocation());
+    ouserinfo_ = p;
+  }
+  return ouserinfo_;
+}
+inline ::ProtoMsg::ServerDB_BaseInfo* Msg_ServerDB_GD_CreateUser_Req::mutable_ouserinfo() {
+  ::ProtoMsg::ServerDB_BaseInfo* _msg = _internal_mutable_ouserinfo();
+  // @@protoc_insertion_point(field_mutable:ProtoMsg.Msg_ServerDB_GD_CreateUser_Req.oUserInfo)
+  return _msg;
+}
+inline void Msg_ServerDB_GD_CreateUser_Req::set_allocated_ouserinfo(::ProtoMsg::ServerDB_BaseInfo* ouserinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete ouserinfo_;
+  }
+  if (ouserinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(ouserinfo);
+    if (message_arena != submessage_arena) {
+      ouserinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ouserinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ouserinfo_ = ouserinfo;
+  // @@protoc_insertion_point(field_set_allocated:ProtoMsg.Msg_ServerDB_GD_CreateUser_Req.oUserInfo)
 }
 
 // -------------------------------------------------------------------

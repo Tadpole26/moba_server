@@ -153,10 +153,10 @@ void CDBNetface::on_disconnect()
 
 void CDBNetface::on_connect()
 {
-	Msg_ServerCommon_Register_Rsp oRegisterRsp;
-	oRegisterRsp.set_uiserverkind(SERVER_KIND_GAME);
-	oRegisterRsp.set_uiserverid(GetServerID());
-	Send_Msg(&oRegisterRsp, MsgModule_ServerCommon::Msg_ServerCommon_Register_Rsp);
+	Msg_ServerCommon_Register_Req oRegisterReq;
+	oRegisterReq.set_uiserverkind(SERVER_KIND_GAME);
+	oRegisterReq.set_uiserverid(GetServerID());
+	Send_Msg(&oRegisterReq, MsgModule_ServerCommon::Msg_ServerCommon_Register_Req);
 
 	CTcpReconn::on_connect();
 }

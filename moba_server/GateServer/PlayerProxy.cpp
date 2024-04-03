@@ -25,16 +25,15 @@ void CPlayerProxy::LogicToGameServer(CUser* pUser, uint32_t uiGameId)
 	pUser->m_uiGameId = uiGameId;
 
 	Msg_ServerInner_GG_Login_Req oLoginReq;
-	oLoginReq.set_llplayerid(pUser->m_llUid);
+	oLoginReq.set_lluserid(pUser->m_llUid);
 	oLoginReq.set_straccname(pUser->m_strAccName);
 	oLoginReq.set_strsession(pUser->m_strSessionId);
 	oLoginReq.set_uisdk(pUser->m_uiSdk);
-	oLoginReq.set_uiclientip(pUser->get_ip());
+	oLoginReq.set_strclientip(pUser->get_ip_str());
 	oLoginReq.set_uirelogin(pUser->m_uiReLogin);
-	oLoginReq.set_uigateid(gGateLogic->m_oConstConfig.m_uiGroupId);
 	oLoginReq.set_uiprovince(pUser->m_uiProvince);
 	oLoginReq.set_strprovincename(pUser->m_strProvince);
-	oLoginReq.set_uiseqid(pUser->m_uiSequence);
+	oLoginReq.set_iseqid(pUser->m_uiSequence);
 	oLoginReq.set_strdeviceid(pUser->m_strDevId);
 	oLoginReq.set_uiproarea(pUser->m_uiProArea);
 	oLoginReq.set_strchannel(pUser->m_strChannel);
@@ -139,9 +138,9 @@ void CPlayerProxy::OnCreatePlayer(CUser* pUser, const tagMsgHead* pNetMsgHead)
 	pUser->m_strCreateName = strName;
 	Log_Info("player name = %s, account id=%lld", strName.c_str(), pUser->m_llUid);
 	Msg_ServerInner_GG_Create_Req oCreateReq;
-	oCreateReq.set_llplayerid(pUser->m_llUid);
+	oCreateReq.set_lluserid(pUser->m_llUid);
 	oCreateReq.set_uigender(CreateMsg.uigender());
-	oCreateReq.set_strplayername(strName);
+	oCreateReq.set_strusername(strName);
 	oCreateReq.set_uiiconid(CreateMsg.uiiconid());
 	oCreateReq.set_uiseqid(pNetMsgHead->uiSeqid);
 	gGateLogic->m_pGameNetface->Send_Msg(&oCreateReq,

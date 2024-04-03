@@ -108,7 +108,8 @@ struct Msg_ServerDB_GD_GetUserInfo_RspDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Msg_ServerDB_GD_GetUserInfo_RspDefaultTypeInternal _Msg_ServerDB_GD_GetUserInfo_Rsp_default_instance_;
 PROTOBUF_CONSTEXPR Msg_ServerDB_GD_CreateUser_Req::Msg_ServerDB_GD_CreateUser_Req(
     ::_pbi::ConstantInitialized)
-  : lluserid_(int64_t{0}){}
+  : ouserinfo_(nullptr)
+  , lluserid_(int64_t{0}){}
 struct Msg_ServerDB_GD_CreateUser_ReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Msg_ServerDB_GD_CreateUser_ReqDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -212,6 +213,7 @@ const uint32_t TableStruct_msg_5fmodule_5fserverdb_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::ProtoMsg::Msg_ServerDB_GD_CreateUser_Req, lluserid_),
+  PROTOBUF_FIELD_OFFSET(::ProtoMsg::Msg_ServerDB_GD_CreateUser_Req, ouserinfo_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ProtoMsg::Msg_ServerDB_GD_CreateUser_Rsp, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -237,8 +239,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 38, -1, -1, sizeof(::ProtoMsg::Msg_ServerDB_GD_GetUserInfo_Req)},
   { 45, -1, -1, sizeof(::ProtoMsg::Msg_ServerDB_GD_GetUserInfo_Rsp)},
   { 54, -1, -1, sizeof(::ProtoMsg::Msg_ServerDB_GD_CreateUser_Req)},
-  { 61, -1, -1, sizeof(::ProtoMsg::Msg_ServerDB_GD_CreateUser_Rsp)},
-  { 69, -1, -1, sizeof(::ProtoMsg::Msg_ServerDB_GD_UpdateBaseInfo)},
+  { 62, -1, -1, sizeof(::ProtoMsg::Msg_ServerDB_GD_CreateUser_Rsp)},
+  { 70, -1, -1, sizeof(::ProtoMsg::Msg_ServerDB_GD_UpdateBaseInfo)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -274,21 +276,22 @@ const char descriptor_table_protodef_msg_5fmodule_5fserverdb_2eproto[] PROTOBUF_
   "fo_Req\022\020\n\010llUserId\030\001 \001(\003\"\202\001\n\037Msg_ServerD"
   "B_GD_GetUserInfo_Rsp\022(\n\toUserData\030\001 \001(\0132"
   "\025.ProtoMsg.buff_data_t\022\020\n\010llUserId\030\002 \001(\003"
-  "\022#\n\005eCode\030\003 \001(\0162\024.ProtoMsg.ResultCode\"2\n"
+  "\022#\n\005eCode\030\003 \001(\0162\024.ProtoMsg.ResultCode\"b\n"
   "\036Msg_ServerDB_GD_CreateUser_Req\022\020\n\010llUse"
-  "rId\030\001 \001(\003\"W\n\036Msg_ServerDB_GD_CreateUser_"
-  "Rsp\022#\n\005eCode\030\001 \001(\0162\024.ProtoMsg.ResultCode"
-  "\022\020\n\010llUserId\030\002 \001(\003\"^\n\036Msg_ServerDB_GD_Up"
-  "dateBaseInfo\022\020\n\010llUserId\030\001 \001(\003\022*\n\005oInfo\030"
-  "\002 \001(\0132\033.ProtoMsg.ServerDB_BaseInfob\006prot"
-  "o3"
+  "rId\030\001 \001(\003\022.\n\toUserInfo\030\002 \001(\0132\033.ProtoMsg."
+  "ServerDB_BaseInfo\"W\n\036Msg_ServerDB_GD_Cre"
+  "ateUser_Rsp\022#\n\005eCode\030\001 \001(\0162\024.ProtoMsg.Re"
+  "sultCode\022\020\n\010llUserId\030\002 \001(\003\"^\n\036Msg_Server"
+  "DB_GD_UpdateBaseInfo\022\020\n\010llUserId\030\001 \001(\003\022*"
+  "\n\005oInfo\030\002 \001(\0132\033.ProtoMsg.ServerDB_BaseIn"
+  "fob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_msg_5fmodule_5fserverdb_2eproto_deps[1] = {
   &::descriptor_table_result_5fcode_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_msg_5fmodule_5fserverdb_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_msg_5fmodule_5fserverdb_2eproto = {
-    false, false, 1082, descriptor_table_protodef_msg_5fmodule_5fserverdb_2eproto,
+    false, false, 1130, descriptor_table_protodef_msg_5fmodule_5fserverdb_2eproto,
     "msg_module_serverdb.proto",
     &descriptor_table_msg_5fmodule_5fserverdb_2eproto_once, descriptor_table_msg_5fmodule_5fserverdb_2eproto_deps, 1, 9,
     schemas, file_default_instances, TableStruct_msg_5fmodule_5fserverdb_2eproto::offsets,
@@ -1676,8 +1679,13 @@ void Msg_ServerDB_GD_GetUserInfo_Rsp::InternalSwap(Msg_ServerDB_GD_GetUserInfo_R
 
 class Msg_ServerDB_GD_CreateUser_Req::_Internal {
  public:
+  static const ::ProtoMsg::ServerDB_BaseInfo& ouserinfo(const Msg_ServerDB_GD_CreateUser_Req* msg);
 };
 
+const ::ProtoMsg::ServerDB_BaseInfo&
+Msg_ServerDB_GD_CreateUser_Req::_Internal::ouserinfo(const Msg_ServerDB_GD_CreateUser_Req* msg) {
+  return *msg->ouserinfo_;
+}
 Msg_ServerDB_GD_CreateUser_Req::Msg_ServerDB_GD_CreateUser_Req(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1687,12 +1695,20 @@ Msg_ServerDB_GD_CreateUser_Req::Msg_ServerDB_GD_CreateUser_Req(::PROTOBUF_NAMESP
 Msg_ServerDB_GD_CreateUser_Req::Msg_ServerDB_GD_CreateUser_Req(const Msg_ServerDB_GD_CreateUser_Req& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_ouserinfo()) {
+    ouserinfo_ = new ::ProtoMsg::ServerDB_BaseInfo(*from.ouserinfo_);
+  } else {
+    ouserinfo_ = nullptr;
+  }
   lluserid_ = from.lluserid_;
   // @@protoc_insertion_point(copy_constructor:ProtoMsg.Msg_ServerDB_GD_CreateUser_Req)
 }
 
 inline void Msg_ServerDB_GD_CreateUser_Req::SharedCtor() {
-lluserid_ = int64_t{0};
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&ouserinfo_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&lluserid_) -
+    reinterpret_cast<char*>(&ouserinfo_)) + sizeof(lluserid_));
 }
 
 Msg_ServerDB_GD_CreateUser_Req::~Msg_ServerDB_GD_CreateUser_Req() {
@@ -1706,6 +1722,7 @@ Msg_ServerDB_GD_CreateUser_Req::~Msg_ServerDB_GD_CreateUser_Req() {
 
 inline void Msg_ServerDB_GD_CreateUser_Req::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete ouserinfo_;
 }
 
 void Msg_ServerDB_GD_CreateUser_Req::SetCachedSize(int size) const {
@@ -1718,6 +1735,10 @@ void Msg_ServerDB_GD_CreateUser_Req::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  if (GetArenaForAllocation() == nullptr && ouserinfo_ != nullptr) {
+    delete ouserinfo_;
+  }
+  ouserinfo_ = nullptr;
   lluserid_ = int64_t{0};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1732,6 +1753,14 @@ const char* Msg_ServerDB_GD_CreateUser_Req::_InternalParse(const char* ptr, ::_p
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           lluserid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ProtoMsg.ServerDB_BaseInfo oUserInfo = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_ouserinfo(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1771,6 +1800,13 @@ uint8_t* Msg_ServerDB_GD_CreateUser_Req::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_lluserid(), target);
   }
 
+  // .ProtoMsg.ServerDB_BaseInfo oUserInfo = 2;
+  if (this->_internal_has_ouserinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::ouserinfo(this),
+        _Internal::ouserinfo(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1786,6 +1822,13 @@ size_t Msg_ServerDB_GD_CreateUser_Req::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // .ProtoMsg.ServerDB_BaseInfo oUserInfo = 2;
+  if (this->_internal_has_ouserinfo()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *ouserinfo_);
+  }
 
   // int64 llUserId = 1;
   if (this->_internal_lluserid() != 0) {
@@ -1814,6 +1857,9 @@ void Msg_ServerDB_GD_CreateUser_Req::MergeFrom(const Msg_ServerDB_GD_CreateUser_
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_has_ouserinfo()) {
+    _internal_mutable_ouserinfo()->::ProtoMsg::ServerDB_BaseInfo::MergeFrom(from._internal_ouserinfo());
+  }
   if (from._internal_lluserid() != 0) {
     _internal_set_lluserid(from._internal_lluserid());
   }
@@ -1834,7 +1880,12 @@ bool Msg_ServerDB_GD_CreateUser_Req::IsInitialized() const {
 void Msg_ServerDB_GD_CreateUser_Req::InternalSwap(Msg_ServerDB_GD_CreateUser_Req* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(lluserid_, other->lluserid_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Msg_ServerDB_GD_CreateUser_Req, lluserid_)
+      + sizeof(Msg_ServerDB_GD_CreateUser_Req::lluserid_)
+      - PROTOBUF_FIELD_OFFSET(Msg_ServerDB_GD_CreateUser_Req, ouserinfo_)>(
+          reinterpret_cast<char*>(&ouserinfo_),
+          reinterpret_cast<char*>(&other->ouserinfo_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Msg_ServerDB_GD_CreateUser_Req::GetMetadata() const {

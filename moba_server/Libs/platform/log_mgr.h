@@ -143,3 +143,15 @@ extern "C"	CLogToolMgr * GetLogMgrInstance();
 	} while (false);
 
 
+#define ERROR_LOG_EXIT0(condition) \
+	do \
+	{\
+	if (!(condition))\
+		{\
+			Log_Error("error!");\
+			goto Exit0;\
+		}\
+	} while (false)
+
+
+
